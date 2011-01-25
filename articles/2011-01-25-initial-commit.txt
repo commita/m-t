@@ -1,0 +1,17 @@
+title: Initial Commit
+author: Kiyoshi Murata
+date: 2011/01/25
+
+This is the first post for Monospaced Thoughts, yet another technology blog.
+~
+On the tech matter: it is setup using the, rather simple but so hacker-ish,
+[toto](http://cloudhead.io/toto) blog "engine". It uses git to commit new posts.
+As of now, I'm writing this on my local vim and, literally, am going to commit
+it to the blog repository. (*geek chills*)
+
+Back to the blog, its intents are not to try to conquer the real, cold and cruel
+world, but the Little Prince's moon.
+
+It is, in short, meant to share content and knowledge.
+
+Accept then, or not, its little humble welcome.
