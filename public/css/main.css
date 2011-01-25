@@ -92,19 +92,38 @@ a:hover {
 .more a:hover { text-decoration: underline }
 
 body > header {
-	display: block;
-	padding-top: 30px;
-	line-height: 180px;
+	height: 180px;
+  width: 100%;
+  display: box;
+  display: -moz-box;
+  display: -webkit-box;
+  padding-top: 30px;
 	margin-bottom: 20px;
+  -moz-box-orient: vertical;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+  -moz-box-align: center;
+  -webkit-box-align: center;
+  box-align: center;
+  -moz-box-pack: center;
+  -webkit-box-pack: center;
+  box-pack: center;
 }
 
+/* title */
 body > header > h1 {
-	border-left: 30px solid black;
+	border-left: 25px solid black;
 	padding-left: 30px;
   font-size: 55px;
-  margin: 100px 0 15px 0;
   font-weight: normal;
   text-shadow: #ccc 2px 2px;
+}
+
+/* tagline */
+body > header > span {
+  float: right;
+  margin: 25px 50px 0 0;
+  font-style: italic;
 }
 
 body > header > h1 a:hover {
