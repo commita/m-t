@@ -7,9 +7,14 @@
     <title><%= title %></title>
   </head>
   <body>
+    <header>
+      <h1><a href="<%= @config[:url] %>"><span class="mono">Monospaced</span> Thoughts</a></h1>
+    </header>
+    
     <section>
       <%= yield %> 
     </section>
+    
     <footer>
       powered by <a href="http://cloudhead.io/toto">toto</a>
     </footer>
