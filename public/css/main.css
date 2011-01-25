@@ -149,9 +149,14 @@ blockquote {
 }
 
 body > footer {
-  text-align: left;
-  margin-left: 10px;
+  text-align: right;
+  margin-right: 10px;
+  margin-top: 50px;
 	font-style: italic;
   font-size: 18px;
   color: #888;
+}
+
+body > footer img {
+  vertical-align: middle;
 }
