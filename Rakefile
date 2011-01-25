@@ -8,14 +8,15 @@ task :default => :new
 
 desc "Create a new article."
 task :new do
-  title = ask('Title: ')
+  title = ENV['TITLE'] || ask('Title: ')
   slug = title.empty?? nil : title.strip.slugize
 
-  article = {'title' => title, 'date' => Time.now.strftime("%d/%m/%Y"), 'author' => @config[:author]}.to_yaml
+  now = Time.now
+  article = {'title' => title, 'date' => now.strftime("%d/%m/%Y"), 'author' => @config[:author]}.to_yaml
   article << "\n"
   article << "Once upon a time...\n\n"
 
-  path = "#{Toto::Paths[:articles]}/#{Time.now.strftime("%Y-%m-%d")}#{'-' + slug if slug}.#{@config[:ext]}"
+  path = "#{Toto::Paths[:articles]}/#{now.strftime("%Y-%m-%d")}#{'-' + slug if slug}.#{@config[:ext]}"
 
   unless File.exist? path
     File.open(path, "w") do |file|

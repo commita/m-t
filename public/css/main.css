@@ -33,11 +33,12 @@ header, footer, section, article {
 	color: #b53131;
 }
 
-.date {
+.article-meta {
   font-style: italic;
   float: right;
   line-height: 43px;
   margin-right: 30px;
+  font-size: 16px;
 }
 
 a {
@@ -137,7 +138,7 @@ ul, li {
 }
 
 code {
-  font-family: 'Anonymous Pro', 'Bitstream Vera Sans', 'Monaco', Courier, mono;
+  font-family: 'Anonymous Pro', 'Bitstream Vera Sans', 'Monaco', Courier, monospace;
 }
 
 pre {

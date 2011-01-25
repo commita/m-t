@@ -20,11 +20,9 @@ toto = Toto::Server.new do
   # Add your settings here
   # set [:setting], [value]
   # 
-  set :author,    config[:author]
-  set :title,     config[:title]
-  set :url,       config[:url]
-  set :disqus,    config[:disqus]
-  set :ext,       config[:ext]
+  config.each do |key, value|
+    set key, value
+  end
   set :root,      "index"                                   # page to load on /
   # set :date,      lambda {|now| now.strftime("%d/%m/%Y") }  # date format for articles
   set :markdown,  :smart                                    # use markdown + smart-mode
