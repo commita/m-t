@@ -1,5 +1,6 @@
 
 require 'toto'
+require 'yaml'
 
 # Rack config
 use Rack::Static, :urls => ['/css', '/js', '/images', '/favicon.ico'], :root => 'public'
@@ -9,6 +10,8 @@ if ENV['RACK_ENV'] == 'development'
   use Rack::ShowExceptions
 end
 
+config = YAML.load_file 'config.yml'
+
 #
 # Create and configure a toto instance
 #
@@ -17,15 +20,15 @@ toto = Toto::Server.new do
   # Add your settings here
   # set [:setting], [value]
   # 
-  set :author,    'm-t'                               # blog author
-  set :title,     'Monospaced Thoughts'                   # site title
-  set :url,       'http://monospaced-thoughts.com'
+  set :author,    config[:author]
+  set :title,     config[:title]
+  set :url,       config[:url]
+  set :disqus,    config[:disqus]
+  set :ext,       config[:ext]
   set :root,      "index"                                   # page to load on /
   # set :date,      lambda {|now| now.strftime("%d/%m/%Y") }  # date format for articles
   set :markdown,  :smart                                    # use markdown + smart-mode
-  set :disqus,    'm-t'                                     # disqus id, or false
   set :summary,   :max => 300, :delim => /~/                # length of article summary and delimiter
-  # set :ext,       'txt'                                     # file extension for articles
   # set :cache,      28800                                    # cache duration, in seconds
 
   set :date, lambda {|now| now.strftime("%B #{now.day.ordinal} %Y") }

@@ -1,6 +1,8 @@
 require 'toto'
+require 'yaml'
 
 @config = Toto::Config::Defaults
+@config.update(YAML.load_file('config.yml'))
 
 task :default => :new
 
@@ -19,7 +21,7 @@ task :new do
     File.open(path, "w") do |file|
       file.write article
     end
-    toto "an article was created for you at #{path}."
+    toto "an article was created for you at #{path}"
   else
     toto "I can't create the article, #{path} already exists."
   end
