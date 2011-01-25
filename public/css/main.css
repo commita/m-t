@@ -93,12 +93,13 @@ a:hover {
 
 body > header {
 	height: 180px;
-  width: 100%;
+  padding-top: 30px;
+	margin-bottom: 20px;
+  /* I wish I could fly */
+  /*
   display: box;
   display: -moz-box;
   display: -webkit-box;
-  padding-top: 30px;
-	margin-bottom: 20px;
   -moz-box-orient: vertical;
   -webkit-box-orient: vertical;
   box-orient: vertical;
@@ -108,6 +109,10 @@ body > header {
   -moz-box-pack: center;
   -webkit-box-pack: center;
   box-pack: center;
+  */
+  /* but no, I have to embrace reality */
+  display: table-cell;
+  vertical-align: middle;
 }
 
 /* title */
