@@ -26,7 +26,7 @@ toto = Toto::Server.new do
   set :root,      "index"                                   # page to load on /
   # set :date,      lambda {|now| now.strftime("%d/%m/%Y") }  # date format for articles
   set :markdown,  :smart                                    # use markdown + smart-mode
-  set :summary,   :max => 300, :delim => /~/                # length of article summary and delimiter
+  set :summary,   :max => 65535, :delim => /~\n/                # length of article summary and delimiter
   # set :cache,      28800                                    # cache duration, in seconds
 
   set :date, lambda {|now| now.strftime("%B #{now.day.ordinal} %Y") }

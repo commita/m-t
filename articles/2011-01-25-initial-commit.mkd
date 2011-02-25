@@ -3,7 +3,7 @@ author: Kiyoshi Murata
 date: 2011/01/25
 
 This is the first post for Monospaced Thoughts, yet another technology blog.
-~
+
 On the tech matter: it is setup using the, rather simple but so hacker-ish,
 [toto](http://cloudhead.io/toto) blog "engine". It uses git to commit new posts.
 As of now, I'm writing this on my local vim and, literally, am going to commit
