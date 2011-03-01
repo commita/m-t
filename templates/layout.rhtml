@@ -3,12 +3,13 @@
   <head>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="alternate" type="application/atom+xml" title="<%= title %> - feed" href="http://feeds.feedburner.com/MonospacedThoughts" />
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
     <title><%= title %></title>
   </head>
   <body>
     <header>
-      <h1><a href="<%= @config[:url] %>"><span class="mono">Monospaced</span> Thoughts</a></h1>
+      <h1>{ <a href="<%= @config[:url] %>"><span class="mono">Monospaced</span> Thoughts</a> }</h1>
       <span><%= @config[:tagline] %></span>
     </header>
     
