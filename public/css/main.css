@@ -194,3 +194,12 @@ body > footer {
 body > footer img {
   vertical-align: middle;
 }
+
+.post h1 {
+  font-size: 2em;
+}
+
+.post li {
+  display: list-item;
+  list-style-type: square;
+}
