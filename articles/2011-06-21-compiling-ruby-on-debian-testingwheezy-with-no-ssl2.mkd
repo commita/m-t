@@ -28,8 +28,7 @@ And you can compile Ruby either applying them manually over the source tree
 with level 1 (`patch -p1 < ruby187.patch`) or if you use
 [rvm](http://rvm.beginrescueend.com) (which is very likely), you can use custom
 patches when installing rubies. It is explained in rvm's docs at
-<https://rvm.beginrescueend.com/rubies/installing/> ("Custom Patches" section).
-It is simple as doing:
+<https://rvm.beginrescueend.com/rubies/patching/>. It is simple as doing:
 
     rvm install 1.8.7 --patch /path/to/ruby187.patch
 
