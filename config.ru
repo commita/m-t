@@ -19,6 +19,9 @@ toto = Toto::Server.new do
   set :markdown, :smart
   set :summary, :max => 5000, :delim => /~\n/
   set :date, lambda {|now| now.strftime("%B #{now.day.ordinal} %Y") }
+
+  set :disqus_id, lambda {|article| "#{article[:date].strftime("%Y-%m-%d")} #{article.slug}" }
+  set :disqus_url, lambda {|article| article.permalink }
 end
 
 run toto

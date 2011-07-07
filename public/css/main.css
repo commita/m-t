@@ -203,3 +203,8 @@ body > footer img {
   display: list-item;
   list-style-type: square;
 }
+
+#comments {
+  margin-top: 15px;
+  border-top: 1px solid #c4c4c4;
+}
