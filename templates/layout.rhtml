@@ -1,12 +1,32 @@
 <!doctype html>
-<html>
+
+<html lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="alternate" type="application/atom+xml" title="<%= title %> - feed" href="http://feeds.feedburner.com/MonospacedThoughts" />
     <link rel="icon" type="image/png" href="/images/favicon.png" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+    
+    <meta charset="UTF-8" />
+    
     <title><%= title %></title>
+
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-24228971-2']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   </head>
+
   <body>
     <header>
       <h1>{ <a href="<%= @config[:url] %>"><span class="mono">Monospaced</span> Thoughts</a> }</h1>
