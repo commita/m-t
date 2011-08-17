@@ -2,12 +2,72 @@ html { margin: 20px }
 
 body {
   margin: 0 auto;
-  font-family: 'Baskerville', Georgia, Times, serif;
+  font-family: corbel, 'lucida grande', helvetica, sans-serif;
   font-size: 18px;
   line-height: 30px;
   padding: 15px;
   width: 720px;
+  background-color: #CDCDC1;
+}
 
+body > header {
+	height: 180px;
+  margin-top: 3em;
+  display: box;
+  box-orient: vertical;
+  box-align: center;
+  box-pack: center;
+  text-align: center;
+}
+
+body > header > h1 {
+  color: #333;
+  font-family: 'Baskerville', Georgia, Times, serif;
+  font-size: 75px;
+  font-weight: normal;
+  text-shadow: #CDC0B0 1px 1px;
+  letter-spacing: -1px;
+}
+
+body > header > h1 > a {
+  font-size: 55px;
+  color: black;
+  text-decoration: none;
+}
+
+body > header > span {
+  float: right;
+  margin: 25px 50px 0 0;
+  font-style: italic;
+}
+
+body > header > h1 a:hover {
+  text-decoration: none;
+}
+
+body > header > h1 .monospace {
+  color: #FF9500;
+  text-shadow: #444 2px 2px;
+  font-family: Helvetica,
+               Coolvetica,
+               "Lucida Console",
+               "DejaVu Sans Mono",
+               Monaco,
+               Consolas,
+               "Bitstream Vera Sans Mono",
+               "Andale Mono",
+               monospace;
+}
+
+article {
+  background-color: #fff;
+  padding: 2em 1em;
+  border-radius: 5px;
+  -wekbit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  box-shadow: #bbb 1px 1px;
+  -webkit-box-shadow: #bbb 1px 1px;
+  -moz-box-shadow: #bbb 1px 1px;
 }
 
 header, footer, section, article {
@@ -45,6 +105,7 @@ a {
 }
 
 article > header > h1 a {
+  letter-spacing: -1px;
   color: black;
   text-decoration: none;
 }
@@ -90,71 +151,6 @@ a:hover {
 
 .more a:hover { text-decoration: underline }
 
-body > header {
-	height: 180px;
-  padding-top: 30px;
-	margin-bottom: 20px;
-  /* I wish I could fly */
-  /*
-  display: box;
-  display: -moz-box;
-  display: -webkit-box;
-  -moz-box-orient: vertical;
-  -webkit-box-orient: vertical;
-  box-orient: vertical;
-  -moz-box-align: center;
-  -webkit-box-align: center;
-  box-align: center;
-  -moz-box-pack: center;
-  -webkit-box-pack: center;
-  box-pack: center;
-  */
-  /* but no, I have to embrace reality */
-  display: table-cell;
-  vertical-align: middle;
-}
-
-/* title */
-body > header > h1 {
-	/*border-left: 25px solid black;*/
-	padding-left: 30px;
-  font-size: 55px;
-  font-weight: normal;
-  text-shadow: #ccc 2px 2px;
-}
-
-body > header > h1 a {
-  color: black;
-  text-decoration: none;
-}
-
-/* tagline */
-body > header > span {
-  float: right;
-  margin: 25px 50px 0 0;
-  font-style: italic;
-}
-
-body > header > h1 a:hover {
-  text-decoration: none;
-}
-
-.mono {
-  font-family: Helvetica,
-               Coolvetica,
-               "Lucida Console",
-               "DejaVu Sans Mono",
-               Monaco,
-               Consolas,
-               "Bitstream Vera Sans Mono",
-               "Andale Mono",
-               monospace;
-}
-
-body > header > h1 .mono {
-  color: #FF9500;
-}
-
 h1, h2, h3, h4 {
   display: inline;
   margin: 0;
@@ -170,12 +166,16 @@ code {
 }
 
 pre {
-  background: transparent url('/images/pre.png') no-repeat scroll left top;
-  margin: 10px 20px 20px 10px;
-  padding: 15px 0 0 70px;
+  margin: 1em;
+  padding: 1em;
   text-indent: 0;
-  color: black;
+  color: #333;
   font-size: 14px;
+  overflow-x: auto;
+  background-color: #EEEEE0;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
 
 blockquote {
