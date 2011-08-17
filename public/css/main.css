@@ -46,7 +46,7 @@ body > header > h1 a:hover {
 }
 
 body > header > h1 .monospace {
-  color: #FF9500;
+  color: #FF8C00;
   text-shadow: #444 2px 2px;
   font-family: Helvetica,
                Coolvetica,
@@ -74,9 +74,6 @@ header, footer, section, article {
 	display: block;
 }
 
-#content {
-}
-
 #by {
 	font-style: italic;
   margin-right: 5px;
@@ -101,17 +98,18 @@ header, footer, section, article {
 }
 
 a {
-  color: /*#E98800*/ /*#b83000*/ /*#E96800*/ /*#DBAE6A*/ /*#E3A549*/ #E7A33E;
+  color: #FF8C00;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 article > header > h1 a {
   letter-spacing: -1px;
   color: black;
   text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
 .post header {
@@ -145,12 +143,6 @@ a:hover {
   text-align: right;
 }
 
-.more a {
-  text-decoration: none;
-}
-
-.more a:hover { text-decoration: underline }
-
 h1, h2, h3, h4 {
   display: inline;
   margin: 0;
@@ -182,19 +174,6 @@ blockquote {
   font-style: italic;
 }
 
-body > footer {
-  text-align: right;
-  margin-right: 10px;
-  margin-top: 50px;
-	font-style: italic;
-  font-size: 18px;
-  color: #888;
-}
-
-body > footer img {
-  vertical-align: middle;
-}
-
 .post h1 {
   font-size: 2em;
 }
@@ -207,4 +186,60 @@ body > footer img {
 #comments {
   margin-top: 15px;
   border-top: 1px solid #c4c4c4;
+}
+
+#archives {
+  margin-top: 1em;
+  padding-left: 1em;
+}
+
+#archives ul {
+  margin: 0;
+}
+
+#archives li {
+  list-style-type: square;
+}
+
+#archives a,
+#archives a:visited,
+#archives a:link
+{
+  color: #444;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#archives a:hover {
+  color: #FF8C00;
+}
+
+body > footer {
+  text-align: right;
+  margin-right: 10px;
+  margin-top: 50px;
+	font-style: italic;
+  font-size: 18px;
+  color: #888;
+}
+
+body > footer > span {
+  margin-left: 1em;
+}
+
+body > footer img {
+  vertical-align: middle;
+}
+
+body > footer a,
+body > footer a:link,
+body > footer a:visited
+{
+  color: #FF8C00;
+  text-decoration: none;
+}
+
+body > footer a:hover
+{
+  border-bottom: 2px solid #FF8C00;
 }

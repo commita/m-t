@@ -13,7 +13,7 @@
     <!--[if lt IE 9]>
     <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    
+
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-24228971-2']);
@@ -28,6 +28,7 @@
   </head>
 
   <body>
+
     <header>
       <h1>{ <a href="<%= @config[:url] %>"><span class="monospace">Monospaced</span> Thoughts</a> }</h1>
       <span><%= @config[:tagline] %></span>
@@ -38,11 +39,10 @@
     </section>
     
     <footer>
-      <a href="/about">about</a> |
-      <a href="http://feeds.feedburner.com/MonospacedThoughts">feed</a> |
-      powered by <a href="http://cloudhead.io/toto">toto</a> |
-      <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/80x15.png" /></a>
+      <span><a href="/about">about</a></span>
+      <span><a href="http://feeds.feedburner.com/MonospacedThoughts">feed</a></span>
+      <span>powered by <a href="http://cloudhead.io/toto">toto</a></span>
+      <span><a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/80x15.png" /></a></span>
     </footer>
   </body>
 </html>
-
