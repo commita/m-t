@@ -1,8 +1,14 @@
+# encoding: utf-8
+
+$:.unshift File.expand_path("../lib", __FILE__)
+
 require 'toto'
 require 'yaml'
+require 'mt'
 
 use Rack::Static, :urls => ['/css', '/js', '/images', '/favicon.ico'], :root => 'public'
 use Rack::CommonLogger
+use MonospacedThoughts::HerokuCache
 
 if ENV['RACK_ENV'] == 'development'
   use Rack::ShowExceptions
