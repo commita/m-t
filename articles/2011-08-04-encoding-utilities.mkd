@@ -1,7 +1,7 @@
 --- 
 title: Encoding utilities
 date: 04/08/2011
-author: 13k
+author: Kiyoshi Murata
 
 Very short post, just a tip on encoding/charset utilities to use with files.
 

@@ -1,7 +1,7 @@
 --- 
 title: Bash regexp trick
 date: 05/07/2011
-author: Kiyoshi
+author: Kiyoshi Murata
 
 Yesterday I was playing with my bash prompt and for a long-explanation reason,
 I ended up needing to strip non-printing sequences from a string (the actual
