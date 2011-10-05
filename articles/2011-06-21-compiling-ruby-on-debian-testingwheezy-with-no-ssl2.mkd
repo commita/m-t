@@ -32,6 +32,7 @@ with level 1 (`patch -p1 < ruby187.patch`) or if you use
 patches when installing rubies. It is explained in rvm's docs at
 <https://rvm.beginrescueend.com/rubies/patching/>. It is simple as doing:
 
-    rvm install 1.8.7 --patch /path/to/ruby187.patch
+	pygment:bash
+	rvm install 1.8.7 --patch /path/to/ruby187.patch
 
 Now Ruby happily compiles on my Debian testing :)

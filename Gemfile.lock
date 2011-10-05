@@ -1,9 +1,18 @@
+GIT
+  remote: git@github.com:13k/pygmentize.git
+  revision: b7820ea3678e078ffc3e18cd393b01a7cc77fbc1
+  ref: b7820ea
+  specs:
+    pygmentize (0.0.3)
+
 GEM
   remote: http://rubygems.org/
   specs:
     builder (3.0.0)
+    curb (0.7.15)
     daemons (1.1.0)
     eventmachine (0.12.10)
+    nokogiri (1.5.0)
     rack (1.2.1)
     rdiscount (1.6.5)
     thin (1.2.7)
@@ -20,6 +29,9 @@ PLATFORMS
 
 DEPENDENCIES
   builder
+  curb
+  nokogiri
+  pygmentize!
   rdiscount
   thin
   toto

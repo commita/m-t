@@ -1,13 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
   <head>
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link href='http://fonts.googleapis.com/css?family=Anonymous+Pro:400,400italic,700,700italic' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" type="text/css" href="/css/fonts/mensch/stylesheet.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/pygments/monokai.css"/>
     <link rel="alternate" type="application/atom+xml" title="<%= title %> - feed" href="/index.xml" />
     <link rel="icon" type="image/png" href="/images/favicon.png" />
-    
+
     <meta charset="UTF-8" />
-    
+
     <title><%= title %></title>
 
     <!--[if lt IE 9]>
@@ -33,11 +36,11 @@
       <h1>{ <a href="<%= @config[:url] %>"><span class="monospace">Monospaced</span> Thoughts</a> }</h1>
       <span><%= @config[:tagline] %></span>
     </header>
-    
+
     <section>
-      <%= yield %> 
+      <%= yield %>
     </section>
-    
+
     <footer>
       <span><a href="/about">about</a></span>
       <span><a href="/index.xml">feed</a></span>

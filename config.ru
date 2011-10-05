@@ -1,16 +1,22 @@
 # encoding: utf-8
 
+TOTO_ENV = ENV["TOTO_ENV"] ||= ENV["RACK_ENV"] ||= "development" unless defined?(TOTO_ENV)
+
+require 'bundler'
+Bundler.setup
+Bundler.require :default, TOTO_ENV.to_sym
+
 $:.unshift File.expand_path("../lib", __FILE__)
 
-require 'toto'
 require 'yaml'
 require 'mt'
 
 use Rack::Static, :urls => ['/css', '/js', '/images', '/favicon.ico', '/robots.txt'], :root => 'public'
 use Rack::CommonLogger
-use MonospacedThoughts::HerokuCache
+use MonospacedThoughts::Middleware::Pygments
+use MonospacedThoughts::Middleware::HerokuCache
 
-if ENV['RACK_ENV'] == 'development'
+if TOTO_ENV == 'development'
   use Rack::ShowExceptions
 end
 
@@ -22,7 +28,7 @@ toto = Toto::Server.new do
   end
 
   set :root, "index"
-  set :markdown, :smart
+  set :markdown, true
   set :summary, :max => 5000, :delim => /~\n/
   set :date, lambda {|now| now.strftime("%B #{now.day.ordinal} %Y") }
 

@@ -9,7 +9,7 @@ I had a draft of this article on a paper since my first contribution to Rails Co
 approximately a week ago and I was postponing to write it because 1) I didn't have enough experience, 
 2) the article would sound a lot like shameless self-promotion and 3) write in English is still a pain in the ass.
 
-However, I got really impressed of what I read tonight on this _agressive_ article 
+However, I got really impressed of what I read tonight on this _aggressive_ article 
 [Want It? Give.](http://ryanbigg.com/2010/04/want-it-give/) by [Ryan Bigg](http://ryanbigg.com/) 
 (I could really listen to [DHH](http://www.loudthinking.com/) talking on a conference on that tone.. am I 
 [that](http://thisweekin.com/thisweekin-startups/twist-46-with-david-heinemeier-hansson-2/) crazy?), so I decided 
