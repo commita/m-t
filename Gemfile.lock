@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:13k/pygmentize.git
+  remote: git://github.com/13k/pygmentize.git
   revision: b7820ea3678e078ffc3e18cd393b01a7cc77fbc1
   ref: b7820ea
   specs:
