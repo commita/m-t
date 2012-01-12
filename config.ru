@@ -1,39 +1,25 @@
-# encoding: utf-8
+require 'bundler/setup'
+require 'sinatra/base'
 
-TOTO_ENV = ENV["TOTO_ENV"] ||= ENV["RACK_ENV"] ||= "development" unless defined?(TOTO_ENV)
+# The project root directory
+$root = ::File.dirname(__FILE__)
 
-require 'bundler'
-Bundler.setup
-Bundler.require :default, TOTO_ENV.to_sym
+class SinatraStaticServer < Sinatra::Base  
 
-$:.unshift File.expand_path("../lib", __FILE__)
-
-require 'yaml'
-require 'mt'
-
-use Rack::Static, :urls => ['/css', '/js', '/images', '/favicon.ico', '/robots.txt'], :root => 'public'
-use Rack::CommonLogger
-use MonospacedThoughts::Middleware::Pygments
-use MonospacedThoughts::Middleware::HerokuCache
-
-if TOTO_ENV == 'development'
-  use Rack::ShowExceptions
-end
-
-config = YAML.load_file 'config.yml'
-
-toto = Toto::Server.new do
-  config.each do |key, value|
-    set key, value
+  get(/.+/) do
+    send_sinatra_file(request.path) {404}
   end
 
-  set :root, "index"
-  set :markdown, true
-  set :summary, :max => 5000, :delim => /~\n/
-  set :date, lambda {|now| now.strftime("%B #{now.day.ordinal} %Y") }
+  not_found do
+    send_sinatra_file('404.html') {"Sorry, I cannot find #{request.path}"}
+  end
 
-  set :disqus_id, lambda {|article| "#{article[:date].strftime("%Y-%m-%d")} #{article.slug}" }
-  set :disqus_url, lambda {|article| article.permalink }
+  def send_sinatra_file(path, &missing_file_block)
+    file_path = File.join(File.dirname(__FILE__), 'public',  path)
+    file_path = File.join(file_path, 'index.html') unless file_path =~ /\.[a-z]+$/i  
+    File.exist?(file_path) ? send_file(file_path) : missing_file_block.call
+  end
+
 end
 
-run toto
+run SinatraStaticServer

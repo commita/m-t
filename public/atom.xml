@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Monospaced Thoughts]]></title>
+  <link href="http://monospaced-thoughts.com/atom.xml" rel="self"/>
+  <link href="http://monospaced-thoughts.com/"/>
+  <updated>2012-01-12T21:18:40-02:00</updated>
+  <id>http://monospaced-thoughts.com/</id>
+  <author>
+    <name><![CDATA[Commita Technology]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Rebasing Mono-T]]></title>
+    <link href="http://monospaced-thoughts.com/2012/01/12/monospaced-rebasing/"/>
+    <updated>2012-01-12T21:04:00-02:00</updated>
+    <id>http://monospaced-thoughts.com/2012/01/12/monospaced-rebasing</id>
+    <content type="html"><![CDATA[<p>Sadly, we&#8217;re saying good bye to the awesome
+<a href="https://github.com/cloudhead/toto">toto</a> blog engine and we are moving to, the
+more awesome still, <a href="http://octopress.org">Octopress</a>. The reason is that while
+<em>toto</em> is simple and efficient, it takes too much time to get some things done,
+like syntax highlighting of source code and besides I eventually get it done
+writing some really simple and elegant stuff (using Rack middlewares and
+pygments), also learning many things in the process, I think I didn&#8217;t actually
+want to spend my time doing that, because I&#8217;d rather spend it writing actual
+content (which is much more difficult for us).</p>
+
+<p>Octopress has also some third party plugins (sidebar is filled with those) and
+the most important is possibility to create our own custom plugins, so we
+decided to give it a try.</p>
+
+<p>Of course this layout isn&#8217;t the original, but we&#8217;ll eventually get it ported to
+Octopress, or even come up with something new. But for now it is what it is.</p>
+
+<p>Nonetheless, nothing better than to start fresh with a fresh new year. Happy
+new year to everyone!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Encoding utilities]]></title>
+    <link href="http://monospaced-thoughts.com/2011/08/04/encoding-utilities/"/>
+    <updated>2011-08-04T00:00:00-03:00</updated>
+    <id>http://monospaced-thoughts.com/2011/08/04/encoding-utilities</id>
+    <content type="html"><![CDATA[<p>Very short post, just a tip on encoding/charset utilities to use with files.</p>
+
+<h2><a href="http://www.gnu.org/s/libiconv/">iconv</a></h2>
+
+<p>The holy grail of encoding, if you didn&#8217;t know it before, just follow the link
+on the title and read about it. Every other thing in universe uses it to
+perform encoding conversion.</p>
+
+<h2><a href="http://detox.sourceforge.net">detox</a></h2>
+
+<p>This one is my favorite, it will rename files and make them &#8220;safe&#8221; (this pretty
+much depends on the filesystem you&#8217;re using. You put a unicode char in a
+filename on a FAT32 partition and the universe collapses in a singularity).
+It supports sequences of filters that you can create and pass the filenames
+through. Very handy.</p>
+
+<h2><a href="http://www.j3e.de/linux/convmv">convmv</a></h2>
+
+<p><em><a href="http://www.j3e.de/linux/convmv/man/">man page</a></em></p>
+
+<p>convmv also renames files, but deals specifically with encoding, so it&#8217;s more
+powerful and supports a wide range of encodings, very good too.</p>
+
+<h2>recode</h2>
+
+<p><em>I couldn&#8217;t find its home page, Debian package is &#8220;recode&#8221;</em></p>
+
+<p>&#8220;recode converts files between character sets and usages.&#8221; It supports
+sequences like detox, is powerful but a little cumbersome. Note that it
+converts file contents, not filenames.</p>
+
+<h2><a href="http://billposer.org/Software/uni2ascii.html">uni2ascii</a></h2>
+
+<p>Converts file contents from unicode to ascii-encoded formats, like HTML
+encoding. Very nice to put in source code, pages, etc.</p>
+
+<h2><a href="http://waterlan.home.xs4all.nl/dos2unix.html">dos2unix</a></h2>
+
+<p>Not exactly an encoding utility, but useful to get rid of <code>\r\n</code> in files
+created on lesser OSes.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Bash regexp trick]]></title>
+    <link href="http://monospaced-thoughts.com/2011/07/05/bash-regexp-trick/"/>
+    <updated>2011-07-05T00:00:00-03:00</updated>
+    <id>http://monospaced-thoughts.com/2011/07/05/bash-regexp-trick</id>
+    <content type="html"><![CDATA[<p>Yesterday I was playing with my bash prompt and for a long-explanation reason,
+I ended up needing to strip non-printing sequences from a string (the actual
+reason is that I was up to learn and do some advanced bash scripting. I didn&#8217;t
+need all the complex stuff before).  From section PROMPTING of bash(1) man
+page, non-printing escape sequences are:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>\[     begin  a sequence of non-printing characters, which could
+</span><span class='line'>       be used to embed a terminal  control  sequence  into  the
+</span><span class='line'>       prompt
+</span><span class='line'>\]     end a sequence of non-printing characters</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So it seems pretty easy to match those, isn&#8217;t? If done with Ruby, it would be
+simply:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="s2">&quot;[np1]text1-[np2]text2&quot;</span><span class="o">.</span><span class="n">gsub</span><span class="sr"> /\[.*?\]/</span><span class="p">,</span> <span class="s2">&quot;&quot;</span> <span class="c1"># =&gt; &quot;text1-text2&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>then you&#8217;d think you could use the awesome pattern substitution in parameter
+expansion, like this simple example:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">text</span><span class="o">=</span><span class="s2">&quot;hello world&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;${text//hello/adios}&quot;</span> <span class="c"># &quot;adios world&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>but bash&#8217;s regexp has no greediness modifiers (like the question mark in Ruby
+or PCRE) to be used in the &#8220;inside part&#8221; of the pattern (the &#8220;anything&#8221; between
+\[ and \]). The usual trick to workaround this is to use a negated pattern of
+the right end of the enclosing pattern:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">text</span><span class="o">=</span><span class="s2">&quot;aaa&lt;skipme&gt;bbb&lt;skipmetoo&gt;ccc&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;${text//&lt;*([^&gt;])&gt;/}&quot;</span> <span class="c"># &quot;aaabbbccc&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This works with patterns that use single characters to enclose the content, but
+what I want is to replace patterns matching content enclosed by pairs of 2
+chars, so I would need to use the negation operator <code>!(...)</code>. But boy&#8230; have I
+tried to make it work? Hell, for hours. It&#8217;s completely counter-intuitive.
+This won&#8217;t work:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">text</span><span class="o">=</span><span class="s2">&quot;aaa&lt;&lt;skipme&gt;&gt;bbb&lt;&lt;skipmetoo&gt;&gt;ccc&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;${text//&lt;&lt;!(&gt;&gt;)&gt;&gt;/}&quot;</span> <span class="c"># &quot;aaaccc&quot;, since /!(&gt;&gt;)/ matches all the &quot;skipme ... skipmetoo&quot; part</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and this, plus all variations, won&#8217;t work too:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">text</span><span class="o">=</span><span class="s2">&quot;aaa&lt;&lt;skipme&gt;&gt;bbb&lt;&lt;skipmetoo&gt;&gt;ccc&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;${text//&lt;&lt;*([^&gt;][^&gt;])&gt;&gt;/}&quot;</span> <span class="c"># &quot;aaabbb&lt;&lt;skipmetoo&gt;&gt;ccc&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>so here&#8217;s my deal: screw with it. A nice alternate solution seems obvious now:
+replace all double-char enclosing sequences with a (very easily distinctive)
+single char, then use the solution above.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Char 0x06 is the non-printable &quot;ACK&quot;.</span>
+</span><span class='line'><span class="c"># What are the odds this char will happen inside a string?</span>
+</span><span class='line'><span class="c"># You need to use as $var because the regexp won&#39;t accept &quot;\x06&quot; in the pattern</span>
+</span><span class='line'><span class="nv">ch</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> -e <span class="s1">&#39;\x06&#39;</span><span class="sb">`</span>
+</span><span class='line'><span class="nv">text</span><span class="o">=</span><span class="s2">&quot;aaa&lt;&lt;skipme&gt;&gt;bbb&lt;&lt;skipmetoo&gt;&gt;ccc&quot;</span>
+</span><span class='line'><span class="nv">tmp</span><span class="o">=</span><span class="s2">&quot;${text//@(&lt;&lt;|&gt;&gt;)/$ch}&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;${tmp//${ch}*([^${ch}])${ch}}&quot;</span> <span class="c"># &quot;aaabbbccc&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&#8230; and it works. I wrapped it up and added some more stripping utils:</p>
+
+<div><script src='https://gist.github.com/1065448.js?file='></script>
+<noscript><pre><code># strip whitespace
+strip() { local s=&quot;${1/%*([[:space:]])}&quot;; echo &quot;${s/#*([[:space:]])}&quot;; }
+
+# strip non-printing escape sequences (\[ ... \]) from string
+strip_np() {
+    local c=`echo -e &quot;\x06&quot;`
+    local tmp=&quot;${1//@(\\\[|\\\])/$c}&quot;
+    echo &quot;${tmp//${c}*([^${c}])${c}}&quot;
+}
+
+# strip colors (\e[ii;jjm) from string
+strip_cl() { echo &quot;${1//\\e\[+([[:digit:]]);+([[:digit:]])m/}&quot;; }</code></pre></noscript></div>
+
+
+<p>Now let me continue learning bizarre topics and finish my
+shell prompt.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Compiling Ruby on Debian testing/wheezy with no SSL2]]></title>
+    <link href="http://monospaced-thoughts.com/2011/06/21/compiling-ruby-on-debian-testingwheezy-with-no-ssl2/"/>
+    <updated>2011-06-21T00:00:00-03:00</updated>
+    <id>http://monospaced-thoughts.com/2011/06/21/compiling-ruby-on-debian-testingwheezy-with-no-ssl2</id>
+    <content type="html"><![CDATA[<p><em><strong>Update</strong>: <a href="http://www.ruby-lang.org/en/news/2011/07/15/ruby-1-9-2-p290-is-released">Ruby 1.9.2-p290</a> and <a href="http://www.ruby-lang.org/en/news/2011/07/02/ruby-1-8-7-p352-released/">Ruby 1.8.7-p352</a> fixes the issue in this post.</em></p>
+
+<p>Debian openssl package now ships <a href="http://packages.debian.org/changelogs/pool/main/o/openssl/current/changelog#version1.0.0c-2">without SSL2
+support</a>,
+but it was only in experimental/unstable until 1.0.0d was <a href="http://packages.qa.debian.org/o/openssl/news/20110409T163912Z.html">migrated to
+testing</a>
+that things got messed up for me, since I use testing and Ruby (both 1.8.7 and
+1.9.2) have problems (<a href="http://redmine.ruby-lang.org/issues/4860">1</a> and <a href="http://redmine.ruby-lang.org/issues/4861">2</a>)
+compiling against a nossl2&#8217;ed OpenSSL lib.</p>
+
+<p>While these problems are not fixed (the fix is in trunk, but not backported to
+1.8 or 1.9 branches), I fetched the patches from the <a href="http://redmine.ruby-lang.org/issues/4556">actual
+fix</a>, formatted them and compiled the
+rubies with them.</p>
+
+<p>Patches are:</p>
+
+<ul>
+<li><a href="https://gist.github.com/1039377#file_ruby_1.8.7_nossl2.diff">Ruby 1.8.7</a></li>
+<li><a href="https://gist.github.com/1039377#file_ruby_1.9.2_nossl2.diff">Ruby 1.9.2</a></li>
+</ul>
+
+
+<p>And you can compile Ruby either applying them manually over the source tree
+with level 1 (<code>patch -p1 &lt; ruby187.patch</code>) or if you use
+<a href="http://rvm.beginrescueend.com">rvm</a> (which is very likely), you can use custom
+patches when installing rubies. It is explained in rvm&#8217;s docs at
+<a href="https://rvm.beginrescueend.com/rubies/patching/">https://rvm.beginrescueend.com/rubies/patching/</a>. It is simple as doing:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rvm install 1.8.7 --patch /path/to/ruby187.patch
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now Ruby happily compiles on my Debian testing :)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[JavaScript Resources]]></title>
+    <link href="http://monospaced-thoughts.com/2011/05/30/javascript-resources/"/>
+    <updated>2011-05-30T00:00:00-03:00</updated>
+    <id>http://monospaced-thoughts.com/2011/05/30/javascript-resources</id>
+    <content type="html"><![CDATA[<p>Quick post. Just a (loosely gathered) compilation of JavaScript resources
+(framework collections, libraries, documentation, etc) that I ran into this
+weekend.</p>
+
+<h2>First Things First</h2>
+
+<p><font color="red">Beware of w3schools</font>. Here&#8217;s a very good explanation at <a href="http://w3fools.com">w3fools.com</a>.</p>
+
+<h2>The Paperwork</h2>
+
+<ul>
+<li>ECMAScript (ECMA-262) <a href="http://www.ecmascript.org/">language specification</a></li>
+</ul>
+
+
+<h2>JavaScript References</h2>
+
+<ul>
+<li>The excellent Mozilla&#8217;s MDC (Mozilla Developer Center, or &#8220;devmo&#8221;) <a href="https://developer.mozilla.org/en/JavaScript/Reference">JavaScript Reference</a></li>
+<li>javascriptkit&#8217;s <a href="http://www.javascriptkit.com/jsref/index.shtml">JavaScript Reference</a></li>
+</ul>
+
+
+<h2>Framework Collections</h2>
+
+<ul>
+<li><a href="http://www.everyjs.com">EveryJS</a> is a community maintened &#8220;index of modern
+JavaScript&#8221;.</li>
+<li><a href="http://microjs.com">MicroJS</a> is also a list of frameworks but targets
+micro-frameworks (frameworks that would fit in 5 kbytes or less and serve a
+single purpose).</li>
+</ul>
+
+
+<h2>Best Practices</h2>
+
+<ul>
+<li><a href="http://javascriptgarden.info">JavaScript Garden</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rubber and whenever integration]]></title>
+    <link href="http://monospaced-thoughts.com/2011/02/25/rubber-and-whenever-integration/"/>
+    <updated>2011-02-25T00:00:00-03:00</updated>
+    <id>http://monospaced-thoughts.com/2011/02/25/rubber-and-whenever-integration</id>
+    <content type="html"><![CDATA[<p>If you are using <a href="http://github.com/wr0ngway/rubber">rubber</a> gem to deploy to
+Amazon&#8217;s EC2 infra-structure and also using
+<a href="http://github.com/javan/whenever">whenever</a> to manage cron jobs, you&#8217;ll
+probably find yourself thinking how to integrate both.</p>
+
+<p>I myself too was wondering about this. The obvious first try was to add
+<em>whenever</em>&#8217;s capistrano tasks to <code>config/deploy.rb</code> by following its
+<a href="http://github.com/javan/whenever/blob/master/README.md">recommendation</a> (see
+the &#8220;Capistrano integration&#8221; section). Long story short, it didn&#8217;t work. When I
+deployed with <code>cap deploy</code>, <em>whenever</em> would actually write to crontab, but
+only to be replaced by <em>rubber</em>&#8217;s own version later, as we can see in this log:</p>
+
+<div><script src='https://gist.github.com/843670.js?file='></script>
+<noscript><pre><code>triggering after callbacks for `deploy:update_code'
+...
+* executing `whenever:update_crontab'
+...
+** [out :: server] [write] crontab file updated
+command finished
+
+(... later rubber will upload config files and recipes and then run rake rubber:config on the server)
+
+** [out :: server] Rubber[INFO]: Transforming &lt;...&gt;/config/rubber/common/crontab</code></pre></noscript></div>
+
+
+<p>Last line shows when <em>rubber</em> transforms and runs the common crontab config and
+overwrites <em>whenever</em>&#8217;s cron jobs.</p>
+
+<p>So, a second, and more successful, try was to avoid capistrano&#8217;s regular
+recipes and instead add a <em>whenever</em> crontab config to <em>rubber</em>.</p>
+
+<p>One could &#8220;quick-and-dirty&#8221;-ly add the expected <em>whenever</em> output to
+<code>config/rubber/common/crontab</code> file, but a better approach is to create a
+config for the <code>db</code> role to install <em>whenever</em> output to crontab:</p>
+
+<div><script src='https://gist.github.com/843668.js?file='></script>
+<noscript><pre><code># config/rubber/role/db/crontab-whenever
+
+&lt;%
+  @read_cmd = 'crontab -l'
+  @write_cmd = 'crontab -'
+  @additive = [&quot;# whenever-start&quot;, &quot;# whenever-end&quot;]
+%&gt;
+
+&lt;%= `cd #{RUBBER_ROOT} &amp;&amp; bundle exec whenever --set environment=&quot;#{RUBBER_ENV}&quot; -f &quot;#{RUBBER_ROOT}/config/schedule.rb&quot;` %&gt;</code></pre></noscript></div>
+
+
+<p><em>One note on the above is to pay attention to keep the <code>@additive</code>
+configuration so the crontab is appended with this section rather than
+overwritten. If you check the <code>config/rubber/common/crontab</code> file, it hasn&#8217;t
+this entry and effectively overwrites the previous crontab.</em></p>
+
+<p>And that was it. One <code>cap deploy</code> and the crontab was filled with <em>rubber</em>&#8217;s
+jobs and <em>whenever</em>&#8217;s too.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Contributing to Rails]]></title>
+    <link href="http://monospaced-thoughts.com/2010/04/12/contributing-to-rails/"/>
+    <updated>2010-04-12T00:00:00-03:00</updated>
+    <id>http://monospaced-thoughts.com/2010/04/12/contributing-to-rails</id>
+    <content type="html"><![CDATA[<p><a href="http://monospaced-thoughts.com/images/contributing-to-rails.jpg"><img src="http://monospaced-thoughts.com/images/contributing-to-rails.jpg" alt="Contributing to Rails" style="width:300px; float:left; padding:10px;"/></a></p>
+
+<p>I had a draft of this article on a paper since my first contribution to Rails Core was accepted
+approximately a week ago and I was postponing to write it because 1) I didn&#8217;t have enough experience,
+2) the article would sound a lot like shameless self-promotion and 3) write in English is still a pain in the ass.</p>
+
+<p>However, I got really impressed of what I read tonight on this <em>aggressive</em> article
+<a href="http://ryanbigg.com/2010/04/want-it-give/">Want It? Give.</a> by <a href="http://ryanbigg.com/">Ryan Bigg</a>
+(I could really listen to <a href="http://www.loudthinking.com/">DHH</a> talking on a conference on that tone.. am I
+<a href="http://thisweekin.com/thisweekin-startups/twist-46-with-david-heinemeier-hansson-2/">that</a> crazy?), so I decided
+to write the article anyway (which doesn&#8217;t mean that I overcame all of my 3 points above, they can still be true).</p>
+
+<p>Although I&#8217;m not a big fan of tirades, they can be very effective and make us motivated to do something, and on
+this case hopefully it&#8217;s a healthy thing! If you aren&#8217;t convinced to start contributing to Rails
+<a href="https://rails.lighthouseapp.com/projects/8994-ruby-on-rails/tickets/bins/5837">right now</a>, go read this article too
+<a href="http://www.enlightsolutions.com/articles/pledge-3-percent-for-rails-3/">Pledge 3 Percent for Rails 3</a> by
+<a href="http://www.enlightsolutions.com/">Dan Pickett</a>.</p>
+
+<p>Now that Bigg and Pickett got you motived to contribute to <a href="http://rubyonrails.org/">Rails</a> , it&#8217;s time to learn on
+how to do it, there&#8217;s plenty of instructions around on how to send a patch to Rails, I&#8217;m not going to reproduce it here,
+so I recommend you to read/watch the following first:</p>
+
+<ul>
+<li><a href="http://railscasts.com/episodes/113-contributing-to-rails-with-git">#113 Contributing to Rails with GIT</a> from Railscasts</li>
+<li><a href="https://rails.lighthouseapp.com/projects/8994/sending-patches">Contributing to Rails</a> from Rails Lighthouse</li>
+</ul>
+
+
+<p>Enough on motivational talk, those articles can fullfil &#8220;Why I should contribute to Rails&#8221;, so I will go through some
+questions that I asked myself when trying to contribute to rails and I wanted to share.</p>
+
+<h3>How I find something to fix or add on Rails?</h3>
+
+<p>I got used to think that all problems on Rails were solved by Rails Rockstars and there wasn&#8217;t bugs left to fix neither
+features that I could add. If you think like this, I have to tell that you are wrong, as I was. I&#8217;m not a great developer
+and definitely not that smart, and still I was able to do my part.</p>
+
+<p>If you didn&#8217;t find a bug or something that you think &#8216;should be nice have X on Rails&#8217; you probably aren&#8217;t playing with
+Rails that much, but still you can find a lot of <a href="https://rails.lighthouseapp.com/projects/8994-ruby-on-rails/tickets/bins/5805">patches</a>
+to test and <a href="https://rails.lighthouseapp.com/projects/8994-ruby-on-rails/tickets/bins/5837">bugs</a> to fix on
+<a href="https://rails.lighthouseapp.com/projects/8994-ruby-on-rails">Rails Lighthouse</a>.</p>
+
+<h3>Where should I start?</h3>
+
+<p>You start from the obvious beginning when talking about Test Driven Development: writing failing tests. Rails has a rock
+solid test suite and you have to embrace it, love it, cultivate it, treat it like your own son! When you are dealing with
+a bugfix, write the missing test case or when adding a new feature modify the existing tests (if necessary) and add more
+tests designing your feature.</p>
+
+<h3>Where I should insert method X? What&#8217;s the best design for feature Y?</h3>
+
+<p>Read the manual and play around. You have a new toy, you don&#8217;t know how to play with it, what you should do is read the
+damn manual and start playing with it. So, read the <a href="http://api.rubyonrails.org/">Rails API</a> and start doing ugly things,
+it&#8217;s your own copy of Rails and you want to know how things works, if you are not sure what all that modules and classes
+are all about start doing copy/paste (build your own Rails frankenstein!) and see what happens. It&#8217;s even valid do PDD -
+Puts Driven Development (as would say <a href="http://flavors.me/rafaelss">Rafael</a>, I friend of mine).</p>
+
+<h3>Feature or Bugfix?</h3>
+
+<p>I would strongly recommend you to start with bugfixes, they are all over the place and will not stop growing anytime soon.
+However, if you are thinking of adding a new feature on Rails, first discuss it on <a href="http://groups.google.com/group/rubyonrails-core">Rails Core mailing list</a>.</p>
+
+<p>As you may know, Rails has some quite strong opinions about a lot of things, and most of the time when talking about new
+features what sounds good to you is far away of what the <a href="http://rubyonrails.org/core">Rails Core Team</a> thinks, so be
+careful when trying to sell your shiny new feature that <em>you</em> think will be awesome-freaking-good on Rails.</p>
+
+<h3>How should I post my ticket?</h3>
+
+<p>Be straight to the point, no one will read a very long text neither guess what your one line bug description means. You
+should follow this simple script:</p>
+
+<ul>
+<li>Describe it shortly</li>
+<li>Post a step by step how to reproduce the bug</li>
+<li>Post OS, database, rails version or whatever you think should be relevant</li>
+</ul>
+
+
+<p>In case of a patch you can add:</p>
+
+<ul>
+<li>Describe where was the problem and..</li>
+<li>Why you took that approach to fix the problem?</li>
+</ul>
+
+
+<h3>What makes my contribution good enough?</h3>
+
+<ul>
+<li>If I had just a few words to say, it would be: <strong>a lot of tests</strong>. That&#8217;s it, you have to write tests for every single
+case, doing a one line patch on Rails could easily mean writing 30 lines of tests. The commiter who will evaluate your
+patch will look essentially your tests and if they cover all cases, so don&#8217;t hesitate on writing a lot of them, tests
+are always welcome.</li>
+<li>Write good documentation in case of features.</li>
+<li>Be polite and collaborative, no one will look at your bug report if you are an asshole or test your patch if you
+are arrogant.</li>
+</ul>
+
+
+<h3>Conclusion</h3>
+
+<p>Although the goal is clear enough: make a better software and contribute for a greater cause. I think that the most useful
+thing that I could get from this enjoyable experience is <strong>the whole process</strong>, because I learned <strong>a lot</strong>. This motive
+should be enough for anyone seeking on improving his programming skills and can&#8217;t handle doing nothing useful on Sundays. :)</p>
+
+<p>And this article is only a <strong>personal experience and opinion</strong> from a greedy Rails contributor. I can be very wrong on
+some subjects, feel free to enlighten me and join the discussion.</p>
+
+<p><em>Happy Rails Hacking.</em></p>
+]]></content>
+  </entry>
+  
+</feed>

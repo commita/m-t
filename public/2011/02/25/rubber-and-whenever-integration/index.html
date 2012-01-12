@@ -1,0 +1,368 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Rubber and whenever integration - Monospaced Thoughts</title>
+  <meta name="author" content="Commita Technology">
+
+  
+  <meta name="description" content="If you are using rubber gem to deploy to
+Amazon&#8217;s EC2 infra-structure and also using
+whenever to manage cron jobs, you&#8217;ll
+probably find &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://monospaced-thoughts.com/2011/02/25/rubber-and-whenever-integration">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Monospaced Thoughts" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-24228971-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Monospaced Thoughts</a></h1>
+  
+    <h2>creativity in machine calligraphy</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:monospaced-thoughts.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Rubber and whenever integration</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-25T00:00:00-03:00" pubdate data-updated="true">Feb 25<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>If you are using <a href="http://github.com/wr0ngway/rubber">rubber</a> gem to deploy to
+Amazon&#8217;s EC2 infra-structure and also using
+<a href="http://github.com/javan/whenever">whenever</a> to manage cron jobs, you&#8217;ll
+probably find yourself thinking how to integrate both.</p>
+
+<p>I myself too was wondering about this. The obvious first try was to add
+<em>whenever</em>&#8217;s capistrano tasks to <code>config/deploy.rb</code> by following its
+<a href="http://github.com/javan/whenever/blob/master/README.md">recommendation</a> (see
+the &#8220;Capistrano integration&#8221; section). Long story short, it didn&#8217;t work. When I
+deployed with <code>cap deploy</code>, <em>whenever</em> would actually write to crontab, but
+only to be replaced by <em>rubber</em>&#8217;s own version later, as we can see in this log:</p>
+
+<div><script src='https://gist.github.com/843670.js?file='></script>
+<noscript><pre><code>triggering after callbacks for `deploy:update_code'
+...
+* executing `whenever:update_crontab'
+...
+** [out :: server] [write] crontab file updated
+command finished
+
+(... later rubber will upload config files and recipes and then run rake rubber:config on the server)
+
+** [out :: server] Rubber[INFO]: Transforming &lt;...&gt;/config/rubber/common/crontab</code></pre></noscript></div>
+
+
+<p>Last line shows when <em>rubber</em> transforms and runs the common crontab config and
+overwrites <em>whenever</em>&#8217;s cron jobs.</p>
+
+<p>So, a second, and more successful, try was to avoid capistrano&#8217;s regular
+recipes and instead add a <em>whenever</em> crontab config to <em>rubber</em>.</p>
+
+<p>One could &#8220;quick-and-dirty&#8221;-ly add the expected <em>whenever</em> output to
+<code>config/rubber/common/crontab</code> file, but a better approach is to create a
+config for the <code>db</code> role to install <em>whenever</em> output to crontab:</p>
+
+<div><script src='https://gist.github.com/843668.js?file='></script>
+<noscript><pre><code># config/rubber/role/db/crontab-whenever
+
+&lt;%
+  @read_cmd = 'crontab -l'
+  @write_cmd = 'crontab -'
+  @additive = [&quot;# whenever-start&quot;, &quot;# whenever-end&quot;]
+%&gt;
+
+&lt;%= `cd #{RUBBER_ROOT} &amp;&amp; bundle exec whenever --set environment=&quot;#{RUBBER_ENV}&quot; -f &quot;#{RUBBER_ROOT}/config/schedule.rb&quot;` %&gt;</code></pre></noscript></div>
+
+
+<p><em>One note on the above is to pay attention to keep the <code>@additive</code>
+configuration so the crontab is appended with this section rather than
+overwritten. If you check the <code>config/rubber/common/crontab</code> file, it hasn&#8217;t
+this entry and effectively overwrites the previous crontab.</em></p>
+
+<p>And that was it. One <code>cap deploy</code> and the crontab was filled with <em>rubber</em>&#8217;s
+jobs and <em>whenever</em>&#8217;s too.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Kiyoshi Murata</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-25T00:00:00-03:00" pubdate data-updated="true">Feb 25<span>th</span>, 2011</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://monospaced-thoughts.com/2011/02/25/rubber-and-whenever-integration/" data-via="krsmurata" data-counturl="http://monospaced-thoughts.com/2011/02/25/rubber-and-whenever-integration/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2010/04/12/contributing-to-rails/" title="Previous Post: Contributing to Rails">&laquo; Contributing to Rails</a>
+      
+      
+        <a class="basic-alignment right" href="/2011/05/30/javascript-resources/" title="next Post: JavaScript Resources">JavaScript Resources &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/01/12/monospaced-rebasing/">Rebasing Mono-T</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/08/04/encoding-utilities/">Encoding utilities</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/07/05/bash-regexp-trick/">Bash regexp trick</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/06/21/compiling-ruby-on-debian-testingwheezy-with-no-ssl2/">Compiling Ruby on Debian testing/wheezy with no SSL2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/05/30/javascript-resources/">JavaScript Resources</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Github Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/commita">@commita</a> on Github
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'commita',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("krsmurata", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/krsmurata" class="twitter-follow-button" data-show-count="false">Follow @krsmurata</a>
+  
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Commita Technology -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'm-t';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://monospaced-thoughts.com/2011/02/25/rubber-and-whenever-integration/';
+        var disqus_url = 'http://monospaced-thoughts.com/2011/02/25/rubber-and-whenever-integration/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
