@@ -189,7 +189,7 @@ jobs and <em>whenever</em>&#8217;s too.</p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://monospaced-thoughts.com/2011/02/25/rubber-and-whenever-integration/" data-via="krsmurata" data-counturl="http://monospaced-thoughts.com/2011/02/25/rubber-and-whenever-integration/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://monospaced-thoughts.com/2011/02/25/rubber-and-whenever-integration/" data-via="" data-counturl="http://monospaced-thoughts.com/2011/02/25/rubber-and-whenever-integration/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -277,23 +277,35 @@ jobs and <em>whenever</em>&#8217;s too.</p>
   <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
-
 <section>
   <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating...</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("krsmurata", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
   
-    <a href="http://twitter.com/krsmurata" class="twitter-follow-button" data-show-count="false">Follow @krsmurata</a>
+    <ul id="tweets-krsmurata" class="tweets">
+      <li class="loading">Status updating...</li>
+    </ul>
+    
+      <a href="http://twitter.com/krsmurata" class="twitter-follow-button" data-show-count="false">Follow @krsmurata</a>
+    
+    <script type="text/javascript">
+      $.domReady(function(){
+        getTwitterFeed("krsmurata", 3, false);
+      });
+    </script>
   
+    <ul id="tweets-13k_" class="tweets">
+      <li class="loading">Status updating...</li>
+    </ul>
+    
+      <a href="http://twitter.com/13k_" class="twitter-follow-button" data-show-count="false">Follow @13k_</a>
+    
+    <script type="text/javascript">
+      $.domReady(function(){
+        getTwitterFeed("13k_", 3, false);
+      });
+    </script>
+  
+  <script src="/javascripts/twitter.js" type="text/javascript"></script>
 </section>
-
 
 
 
