@@ -2,29 +2,35 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://monospaced-thoughts.com/2010/04/12/contributing-to-rails/</loc>
-        <lastmod>2012-01-12T21:31:02-02:00</lastmod>
+        <lastmod>2012-01-14T02:24:02-02:00</lastmod>
     </url>
     <url>
         <loc>http://monospaced-thoughts.com/2011/02/25/rubber-and-whenever-integration/</loc>
-        <lastmod>2012-01-12T21:31:02-02:00</lastmod>
+        <lastmod>2012-01-14T02:24:15-02:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://monospaced-thoughts.com/2011/05/09/dependency-tricks-when-compiling-ruby/
+        </loc>
+        <lastmod>2012-01-14T01:44:39-02:00</lastmod>
     </url>
     <url>
         <loc>http://monospaced-thoughts.com/2011/05/30/javascript-resources/</loc>
-        <lastmod>2012-01-12T21:31:02-02:00</lastmod>
+        <lastmod>2012-01-14T02:24:24-02:00</lastmod>
     </url>
     <url>
         <loc>
             http://monospaced-thoughts.com/2011/06/21/compiling-ruby-on-debian-testingwheezy-with-no-ssl2/
         </loc>
-        <lastmod>2012-01-12T21:31:02-02:00</lastmod>
+        <lastmod>2012-01-14T02:24:32-02:00</lastmod>
     </url>
     <url>
         <loc>http://monospaced-thoughts.com/2011/07/05/bash-regexp-trick/</loc>
-        <lastmod>2012-01-12T21:31:02-02:00</lastmod>
+        <lastmod>2012-01-14T02:24:43-02:00</lastmod>
     </url>
     <url>
         <loc>http://monospaced-thoughts.com/2011/08/04/encoding-utilities/</loc>
-        <lastmod>2012-01-12T21:31:02-02:00</lastmod>
+        <lastmod>2012-01-14T02:24:55-02:00</lastmod>
     </url>
     <url>
         <loc>http://monospaced-thoughts.com/2012/01/12/monospaced-rebasing/</loc>
@@ -32,10 +38,10 @@
     </url>
     <url>
         <loc>http://monospaced-thoughts.com/</loc>
-        <lastmod>2012-01-12T21:31:02-02:00</lastmod>
+        <lastmod>2012-01-14T02:24:55-02:00</lastmod>
     </url>
     <url>
         <loc>http://monospaced-thoughts.com/blog/archives/</loc>
-        <lastmod>2012-01-12T21:31:02-02:00</lastmod>
+        <lastmod>2012-01-14T02:24:55-02:00</lastmod>
     </url>
 </urlset>

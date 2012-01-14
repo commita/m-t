@@ -4,7 +4,7 @@ date: 25/02/2011
 author: Kiyoshi Murata
 layout: post
 comments: true
-categories: 
+categories: rubber whenever ruby
 --- 
 
 If you are using [rubber](http://github.com/wr0ngway/rubber) gem to deploy to

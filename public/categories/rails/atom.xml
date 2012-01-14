@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: rails | Monospaced Thoughts]]></title>
+  <link href="http://monospaced-thoughts.com/categories/rails/atom.xml" rel="self"/>
+  <link href="http://monospaced-thoughts.com/"/>
+  <updated>2012-01-14T02:25:11-02:00</updated>
+  <id>http://monospaced-thoughts.com/</id>
+  <author>
+    <name><![CDATA[Commita Technology]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Contributing to Rails]]></title>
+    <link href="http://monospaced-thoughts.com/2010/04/12/contributing-to-rails/"/>
+    <updated>2010-04-12T00:00:00-03:00</updated>
+    <id>http://monospaced-thoughts.com/2010/04/12/contributing-to-rails</id>
+    <content type="html"><![CDATA[<p><a href="http://monospaced-thoughts.com/images/contributing-to-rails.jpg"><img src="http://monospaced-thoughts.com/images/contributing-to-rails.jpg" alt="Contributing to Rails" style="width:300px; float:left; padding:10px;"/></a></p>
+
+<p>I had a draft of this article on a paper since my first contribution to Rails Core was accepted
+approximately a week ago and I was postponing to write it because 1) I didn't have enough experience,
+2) the article would sound a lot like shameless self-promotion and 3) write in English is still a pain in the ass.</p>
+
+<p>However, I got really impressed of what I read tonight on this <em>aggressive</em> article
+<a href="http://ryanbigg.com/2010/04/want-it-give/">Want It? Give.</a> by <a href="http://ryanbigg.com/">Ryan Bigg</a>
+(I could really listen to <a href="http://www.loudthinking.com/">DHH</a> talking on a conference on that tone.. am I
+<a href="http://thisweekin.com/thisweekin-startups/twist-46-with-david-heinemeier-hansson-2/">that</a> crazy?), so I decided
+to write the article anyway (which doesn't mean that I overcame all of my 3 points above, they can still be true).</p>
+
+<p>Although I'm not a big fan of tirades, they can be very effective and make us motivated to do something, and on
+this case hopefully it's a healthy thing! If you aren't convinced to start contributing to Rails
+<a href="https://rails.lighthouseapp.com/projects/8994-ruby-on-rails/tickets/bins/5837">right now</a>, go read this article too
+<a href="http://www.enlightsolutions.com/articles/pledge-3-percent-for-rails-3/">Pledge 3 Percent for Rails 3</a> by
+<a href="http://www.enlightsolutions.com/">Dan Pickett</a>.</p>
+
+<p>Now that Bigg and Pickett got you motived to contribute to <a href="http://rubyonrails.org/">Rails</a> , it's time to learn on
+how to do it, there's plenty of instructions around on how to send a patch to Rails, I'm not going to reproduce it here,
+so I recommend you to read/watch the following first:</p>
+
+<ul>
+<li><a href="http://railscasts.com/episodes/113-contributing-to-rails-with-git">#113 Contributing to Rails with GIT</a> from Railscasts</li>
+<li><a href="https://rails.lighthouseapp.com/projects/8994/sending-patches">Contributing to Rails</a> from Rails Lighthouse</li>
+</ul>
+
+
+<p>Enough on motivational talk, those articles can fullfil "Why I should contribute to Rails", so I will go through some
+questions that I asked myself when trying to contribute to rails and I wanted to share.</p>
+
+<h3>How I find something to fix or add on Rails?</h3>
+
+<p>I got used to think that all problems on Rails were solved by Rails Rockstars and there wasn't bugs left to fix neither
+features that I could add. If you think like this, I have to tell that you are wrong, as I was. I'm not a great developer
+and definitely not that smart, and still I was able to do my part.</p>
+
+<p>If you didn't find a bug or something that you think 'should be nice have X on Rails' you probably aren't playing with
+Rails that much, but still you can find a lot of <a href="https://rails.lighthouseapp.com/projects/8994-ruby-on-rails/tickets/bins/5805">patches</a>
+to test and <a href="https://rails.lighthouseapp.com/projects/8994-ruby-on-rails/tickets/bins/5837">bugs</a> to fix on
+<a href="https://rails.lighthouseapp.com/projects/8994-ruby-on-rails">Rails Lighthouse</a>.</p>
+
+<h3>Where should I start?</h3>
+
+<p>You start from the obvious beginning when talking about Test Driven Development: writing failing tests. Rails has a rock
+solid test suite and you have to embrace it, love it, cultivate it, treat it like your own son! When you are dealing with
+a bugfix, write the missing test case or when adding a new feature modify the existing tests (if necessary) and add more
+tests designing your feature.</p>
+
+<h3>Where I should insert method X? What's the best design for feature Y?</h3>
+
+<p>Read the manual and play around. You have a new toy, you don't know how to play with it, what you should do is read the
+damn manual and start playing with it. So, read the <a href="http://api.rubyonrails.org/">Rails API</a> and start doing ugly things,
+it's your own copy of Rails and you want to know how things works, if you are not sure what all that modules and classes
+are all about start doing copy/paste (build your own Rails frankenstein!) and see what happens. It's even valid do PDD -
+Puts Driven Development (as would say <a href="http://flavors.me/rafaelss">Rafael</a>, I friend of mine).</p>
+
+<h3>Feature or Bugfix?</h3>
+
+<p>I would strongly recommend you to start with bugfixes, they are all over the place and will not stop growing anytime soon.
+However, if you are thinking of adding a new feature on Rails, first discuss it on <a href="http://groups.google.com/group/rubyonrails-core">Rails Core mailing list</a>.</p>
+
+<p>As you may know, Rails has some quite strong opinions about a lot of things, and most of the time when talking about new
+features what sounds good to you is far away of what the <a href="http://rubyonrails.org/core">Rails Core Team</a> thinks, so be
+careful when trying to sell your shiny new feature that <em>you</em> think will be awesome-freaking-good on Rails.</p>
+
+<h3>How should I post my ticket?</h3>
+
+<p>Be straight to the point, no one will read a very long text neither guess what your one line bug description means. You
+should follow this simple script:</p>
+
+<ul>
+<li>Describe it shortly</li>
+<li>Post a step by step how to reproduce the bug</li>
+<li>Post OS, database, rails version or whatever you think should be relevant</li>
+</ul>
+
+
+<p>In case of a patch you can add:</p>
+
+<ul>
+<li>Describe where was the problem and..</li>
+<li>Why you took that approach to fix the problem?</li>
+</ul>
+
+
+<h3>What makes my contribution good enough?</h3>
+
+<ul>
+<li>If I had just a few words to say, it would be: <strong>a lot of tests</strong>. That's it, you have to write tests for every single
+case, doing a one line patch on Rails could easily mean writing 30 lines of tests. The commiter who will evaluate your
+patch will look essentially your tests and if they cover all cases, so don't hesitate on writing a lot of them, tests
+are always welcome.</li>
+<li>Write good documentation in case of features.</li>
+<li>Be polite and collaborative, no one will look at your bug report if you are an asshole or test your patch if you
+are arrogant.</li>
+</ul>
+
+
+<h3>Conclusion</h3>
+
+<p>Although the goal is clear enough: make a better software and contribute for a greater cause. I think that the most useful
+thing that I could get from this enjoyable experience is <strong>the whole process</strong>, because I learned <strong>a lot</strong>. This motive
+should be enough for anyone seeking on improving his programming skills and can't handle doing nothing useful on Sundays. :)</p>
+
+<p>And this article is only a <strong>personal experience and opinion</strong> from a greedy Rails contributor. I can be very wrong on
+some subjects, feel free to enlighten me and join the discussion.</p>
+
+<p><em>Happy Rails Hacking.</em></p>
+]]></content>
+  </entry>
+  
+</feed>

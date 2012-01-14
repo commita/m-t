@@ -4,7 +4,7 @@ date: 21/06/2011
 author: Kiyoshi Murata
 layout: post
 comments: true
-categories: 
+categories: debian ruby
 --- 
 
 _**Update**: [Ruby 1.9.2-p290](http://www.ruby-lang.org/en/news/2011/07/15/ruby-1-9-2-p290-is-released) and [Ruby 1.8.7-p352](http://www.ruby-lang.org/en/news/2011/07/02/ruby-1-8-7-p352-released/) fixes the issue in this post._

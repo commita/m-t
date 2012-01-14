@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ruby | Monospaced Thoughts]]></title>
+  <link href="http://monospaced-thoughts.com/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://monospaced-thoughts.com/"/>
+  <updated>2012-01-14T02:25:11-02:00</updated>
+  <id>http://monospaced-thoughts.com/</id>
+  <author>
+    <name><![CDATA[Commita Technology]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Compiling Ruby on Debian testing/wheezy with no SSL2]]></title>
+    <link href="http://monospaced-thoughts.com/2011/06/21/compiling-ruby-on-debian-testingwheezy-with-no-ssl2/"/>
+    <updated>2011-06-21T00:00:00-03:00</updated>
+    <id>http://monospaced-thoughts.com/2011/06/21/compiling-ruby-on-debian-testingwheezy-with-no-ssl2</id>
+    <content type="html"><![CDATA[<p><em><strong>Update</strong>: <a href="http://www.ruby-lang.org/en/news/2011/07/15/ruby-1-9-2-p290-is-released">Ruby 1.9.2-p290</a> and <a href="http://www.ruby-lang.org/en/news/2011/07/02/ruby-1-8-7-p352-released/">Ruby 1.8.7-p352</a> fixes the issue in this post.</em></p>
+
+<p>Debian openssl package now ships <a href="http://packages.debian.org/changelogs/pool/main/o/openssl/current/changelog#version1.0.0c-2">without SSL2
+support</a>,
+but it was only in experimental/unstable until 1.0.0d was <a href="http://packages.qa.debian.org/o/openssl/news/20110409T163912Z.html">migrated to
+testing</a>
+that things got messed up for me, since I use testing and Ruby (both 1.8.7 and
+1.9.2) have problems (<a href="http://redmine.ruby-lang.org/issues/4860">1</a> and <a href="http://redmine.ruby-lang.org/issues/4861">2</a>)
+compiling against a nossl2'ed OpenSSL lib.</p>
+
+<p>While these problems are not fixed (the fix is in trunk, but not backported to
+1.8 or 1.9 branches), I fetched the patches from the <a href="http://redmine.ruby-lang.org/issues/4556">actual
+fix</a>, formatted them and compiled the
+rubies with them.</p>
+
+<p>Patches are:</p>
+
+<ul>
+<li><a href="https://gist.github.com/1039377#file_ruby_1.8.7_nossl2.diff">Ruby 1.8.7</a></li>
+<li><a href="https://gist.github.com/1039377#file_ruby_1.9.2_nossl2.diff">Ruby 1.9.2</a></li>
+</ul>
+
+
+<p>And you can compile Ruby either applying them manually over the source tree
+with level 1 (<code>patch -p1 &lt; ruby187.patch</code>) or if you use
+<a href="http://rvm.beginrescueend.com">rvm</a> (which is very likely), you can use custom
+patches when installing rubies. It is explained in rvm's docs at
+<a href="https://rvm.beginrescueend.com/rubies/patching/">https://rvm.beginrescueend.com/rubies/patching/</a>. It is simple as doing:</p>
+
+<p><code>sh
+rvm install 1.8.7 --patch /path/to/ruby187.patch
+</code></p>
+
+<p>Now Ruby happily compiles on my Debian testing :)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dependency tricks when compiling Ruby]]></title>
+    <link href="http://monospaced-thoughts.com/2011/05/09/dependency-tricks-when-compiling-ruby/"/>
+    <updated>2011-05-09T00:00:00-03:00</updated>
+    <id>http://monospaced-thoughts.com/2011/05/09/dependency-tricks-when-compiling-ruby</id>
+    <content type="html"><![CDATA[<p>Just solved a few "obscure" problems and I'm posting them.</p>
+
+<h1>Dependencies</h1>
+
+<p>Optional (but you would <em>really</em> like to install them) dependencies are:</p>
+
+<ul>
+<li>OpenSSL (Debian-based package: libssl-dev)</li>
+<li>readline (Debian-based package: libreadline5-dev [ruby1.8] | libreadline6-dev [ruby1.9]. <em>For Ruby1.8, <em>you must install readline 5</em>, otherwise you'll get a damn slow prompt</em>)</li>
+<li>zlib (Debian-based package: zlib1g-dev)</li>
+</ul>
+
+
+<p>Here are a few compeling motives on why you'd really like to get them:</p>
+
+<ul>
+<li>No SSL means no 'net/https' and no HTTPs for 'open-uri'</li>
+<li>No readline means you can't hit 'up arrow' on IRB and get the previous command (no command history)</li>
+<li>No zlib means you can't install a gem</li>
+</ul>
+
+
+<p>Long story short, install 'em. And get the right versions.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rubber and whenever integration]]></title>
+    <link href="http://monospaced-thoughts.com/2011/02/25/rubber-and-whenever-integration/"/>
+    <updated>2011-02-25T00:00:00-03:00</updated>
+    <id>http://monospaced-thoughts.com/2011/02/25/rubber-and-whenever-integration</id>
+    <content type="html"><![CDATA[<p>If you are using <a href="http://github.com/wr0ngway/rubber">rubber</a> gem to deploy to
+Amazon's EC2 infra-structure and also using
+<a href="http://github.com/javan/whenever">whenever</a> to manage cron jobs, you'll
+probably find yourself thinking how to integrate both.</p>
+
+<p>I myself too was wondering about this. The obvious first try was to add
+<em>whenever</em>'s capistrano tasks to <code>config/deploy.rb</code> by following its
+<a href="http://github.com/javan/whenever/blob/master/README.md">recommendation</a> (see
+the "Capistrano integration" section). Long story short, it didn't work. When I
+deployed with <code>cap deploy</code>, <em>whenever</em> would actually write to crontab, but
+only to be replaced by <em>rubber</em>'s own version later, as we can see in this log:</p>
+
+<p><div><script src='https://gist.github.com/843670.js?file='></script>
+<noscript><pre><code>triggering after callbacks for `deploy:update_code'
+...
+* executing `whenever:update_crontab'
+...
+** [out :: server] [write] crontab file updated
+command finished
+
+(... later rubber will upload config files and recipes and then run rake rubber:config on the server)
+
+** [out :: server] Rubber[INFO]: Transforming &lt;...&gt;/config/rubber/common/crontab</code></pre></noscript></div>
+</p>
+
+<p>Last line shows when <em>rubber</em> transforms and runs the common crontab config and
+overwrites <em>whenever</em>'s cron jobs.</p>
+
+<p>So, a second, and more successful, try was to avoid capistrano's regular
+recipes and instead add a <em>whenever</em> crontab config to <em>rubber</em>.</p>
+
+<p>One could "quick-and-dirty"-ly add the expected <em>whenever</em> output to
+<code>config/rubber/common/crontab</code> file, but a better approach is to create a
+config for the <code>db</code> role to install <em>whenever</em> output to crontab:</p>
+
+<p><div><script src='https://gist.github.com/843668.js?file='></script>
+<noscript><pre><code># config/rubber/role/db/crontab-whenever
+
+&lt;%
+  @read_cmd = 'crontab -l'
+  @write_cmd = 'crontab -'
+  @additive = [&quot;# whenever-start&quot;, &quot;# whenever-end&quot;]
+%&gt;
+
+&lt;%= `cd #{RUBBER_ROOT} &amp;&amp; bundle exec whenever --set environment=&quot;#{RUBBER_ENV}&quot; -f &quot;#{RUBBER_ROOT}/config/schedule.rb&quot;` %&gt;</code></pre></noscript></div>
+</p>
+
+<p><em>One note on the above is to pay attention to keep the <code>@additive</code>
+configuration so the crontab is appended with this section rather than
+overwritten. If you check the <code>config/rubber/common/crontab</code> file, it hasn't
+this entry and effectively overwrites the previous crontab.</em></p>
+
+<p>And that was it. One <code>cap deploy</code> and the crontab was filled with <em>rubber</em>'s
+jobs and <em>whenever</em>'s too.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -4,7 +4,7 @@ title: JavaScript Resources
 date: 30/05/2011
 layout: post
 comments: true
-categories: 
+categories: javascript
 --- 
 
 Quick post. Just a (loosely gathered) compilation of JavaScript resources

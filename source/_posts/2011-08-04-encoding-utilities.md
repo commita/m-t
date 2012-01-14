@@ -4,7 +4,7 @@ date: 04/08/2011
 author: Kiyoshi Murata
 layout: post
 comments: true
-categories: 
+categories: util encoding
 --- 
 
 Very short post, just a tip on encoding/charset utilities to use with files.

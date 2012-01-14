@@ -4,7 +4,7 @@ date: 05/07/2011
 author: Kiyoshi Murata
 layout: post
 comments: true
-categories: 
+categories: bash regex
 --- 
 
 Yesterday I was playing with my bash prompt and for a long-explanation reason,

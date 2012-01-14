@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: encoding | Monospaced Thoughts]]></title>
+  <link href="http://monospaced-thoughts.com/categories/encoding/atom.xml" rel="self"/>
+  <link href="http://monospaced-thoughts.com/"/>
+  <updated>2012-01-14T02:25:11-02:00</updated>
+  <id>http://monospaced-thoughts.com/</id>
+  <author>
+    <name><![CDATA[Commita Technology]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Encoding utilities]]></title>
+    <link href="http://monospaced-thoughts.com/2011/08/04/encoding-utilities/"/>
+    <updated>2011-08-04T00:00:00-03:00</updated>
+    <id>http://monospaced-thoughts.com/2011/08/04/encoding-utilities</id>
+    <content type="html"><![CDATA[<p>Very short post, just a tip on encoding/charset utilities to use with files.</p>
+
+<h2><a href="http://www.gnu.org/s/libiconv/">iconv</a></h2>
+
+<p>The holy grail of encoding, if you didn't know it before, just follow the link
+on the title and read about it. Every other thing in universe uses it to
+perform encoding conversion.</p>
+
+<h2><a href="http://detox.sourceforge.net">detox</a></h2>
+
+<p>This one is my favorite, it will rename files and make them "safe" (this pretty
+much depends on the filesystem you're using. You put a unicode char in a
+filename on a FAT32 partition and the universe collapses in a singularity).
+It supports sequences of filters that you can create and pass the filenames
+through. Very handy.</p>
+
+<h2><a href="http://www.j3e.de/linux/convmv">convmv</a></h2>
+
+<p><em><a href="http://www.j3e.de/linux/convmv/man/">man page</a></em></p>
+
+<p>convmv also renames files, but deals specifically with encoding, so it's more
+powerful and supports a wide range of encodings, very good too.</p>
+
+<h2>recode</h2>
+
+<p><em>I couldn't find its home page, Debian package is "recode"</em></p>
+
+<p>"recode converts files between character sets and usages." It supports
+sequences like detox, is powerful but a little cumbersome. Note that it
+converts file contents, not filenames.</p>
+
+<h2><a href="http://billposer.org/Software/uni2ascii.html">uni2ascii</a></h2>
+
+<p>Converts file contents from unicode to ascii-encoded formats, like HTML
+encoding. Very nice to put in source code, pages, etc.</p>
+
+<h2><a href="http://waterlan.home.xs4all.nl/dos2unix.html">dos2unix</a></h2>
+
+<p>Not exactly an encoding utility, but useful to get rid of <code>\r\n</code> in files
+created on lesser OSes.</p>
+]]></content>
+  </entry>
+  
+</feed>

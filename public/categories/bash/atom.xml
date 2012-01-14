@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: bash | Monospaced Thoughts]]></title>
+  <link href="http://monospaced-thoughts.com/categories/bash/atom.xml" rel="self"/>
+  <link href="http://monospaced-thoughts.com/"/>
+  <updated>2012-01-14T02:25:11-02:00</updated>
+  <id>http://monospaced-thoughts.com/</id>
+  <author>
+    <name><![CDATA[Commita Technology]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Bash regexp trick]]></title>
+    <link href="http://monospaced-thoughts.com/2011/07/05/bash-regexp-trick/"/>
+    <updated>2011-07-05T00:00:00-03:00</updated>
+    <id>http://monospaced-thoughts.com/2011/07/05/bash-regexp-trick</id>
+    <content type="html"><![CDATA[<p>Yesterday I was playing with my bash prompt and for a long-explanation reason,
+I ended up needing to strip non-printing sequences from a string (the actual
+reason is that I was up to learn and do some advanced bash scripting. I didn't
+need all the complex stuff before).  From section PROMPTING of bash(1) man
+page, non-printing escape sequences are:</p>
+
+<p>```</p>
+
+<pre><code>\[     begin  a sequence of non-printing characters, which could
+       be used to embed a terminal  control  sequence  into  the
+       prompt
+\]     end a sequence of non-printing characters
+</code></pre>
+
+<p>```</p>
+
+<p>So it seems pretty easy to match those, isn't? If done with Ruby, it would be
+simply:</p>
+
+<p>``` ruby</p>
+
+<pre><code>"[np1]text1-[np2]text2".gsub /\[.*?\]/, "" # =&gt; "text1-text2"
+</code></pre>
+
+<p>```</p>
+
+<p>then you'd think you could use the awesome pattern substitution in parameter
+expansion, like this simple example:</p>
+
+<p>``` bash</p>
+
+<pre><code>text="hello world"
+echo "${text//hello/adios}" # "adios world"
+</code></pre>
+
+<p>```</p>
+
+<p>but bash's regexp has no greediness modifiers (like the question mark in Ruby
+or PCRE) to be used in the "inside part" of the pattern (the "anything" between
+\[ and \]). The usual trick to workaround this is to use a negated pattern of
+the right end of the enclosing pattern:</p>
+
+<p>``` bash</p>
+
+<pre><code>text="aaa&lt;skipme&gt;bbb&lt;skipmetoo&gt;ccc"
+echo "${text//&lt;*([^&gt;])&gt;/}" # "aaabbbccc"
+</code></pre>
+
+<p>```</p>
+
+<p>This works with patterns that use single characters to enclose the content, but
+what I want is to replace patterns matching content enclosed by pairs of 2
+chars, so I would need to use the negation operator <code>!(...)</code>. But boy... have I
+tried to make it work? Hell, for hours. It's completely counter-intuitive.
+This won't work:</p>
+
+<p>``` bash</p>
+
+<pre><code>text="aaa&lt;&lt;skipme&gt;&gt;bbb&lt;&lt;skipmetoo&gt;&gt;ccc"
+echo "${text//&lt;&lt;!(&gt;&gt;)&gt;&gt;/}" # "aaaccc", since /!(&gt;&gt;)/ matches all the "skipme ... skipmetoo" part
+</code></pre>
+
+<p>```</p>
+
+<p>and this, plus all variations, won't work too:</p>
+
+<p>``` bash</p>
+
+<pre><code>text="aaa&lt;&lt;skipme&gt;&gt;bbb&lt;&lt;skipmetoo&gt;&gt;ccc"
+echo "${text//&lt;&lt;*([^&gt;][^&gt;])&gt;&gt;/}" # "aaabbb&lt;&lt;skipmetoo&gt;&gt;ccc"
+</code></pre>
+
+<p>```</p>
+
+<p>so here's my deal: screw with it. A nice alternate solution seems obvious now:
+replace all double-char enclosing sequences with a (very easily distinctive)
+single char, then use the solution above.</p>
+
+<p>``` bash</p>
+
+<pre><code># Char 0x06 is the non-printable "ACK".
+# What are the odds this char will happen inside a string?
+# You need to use as $var because the regexp won't accept "\x06" in the pattern
+ch=`echo -e '\x06'`
+text="aaa&lt;&lt;skipme&gt;&gt;bbb&lt;&lt;skipmetoo&gt;&gt;ccc"
+tmp="${text//@(&lt;&lt;|&gt;&gt;)/$ch}"
+echo "${tmp//${ch}*([^${ch}])${ch}}" # "aaabbbccc"
+</code></pre>
+
+<p>```</p>
+
+<p>... and it works. I wrapped it up and added some more stripping utils:</p>
+
+<p><div><script src='https://gist.github.com/1065448.js?file='></script>
+<noscript><pre><code># strip whitespace
+strip() { local s=&quot;${1/%*([[:space:]])}&quot;; echo &quot;${s/#*([[:space:]])}&quot;; }
+
+# strip non-printing escape sequences (\[ ... \]) from string
+strip_np() {
+	local c=`echo -e &quot;\x06&quot;`
+	local tmp=&quot;${1//@(\\\[|\\\])/$c}&quot;
+	echo &quot;${tmp//${c}*([^${c}])${c}}&quot;
+}
+
+# strip colors (\e[ii;jjm) from string
+strip_cl() { echo &quot;${1//\\e\[+([[:digit:]]);+([[:digit:]])m/}&quot;; }</code></pre></noscript></div>
+</p>
+
+<p>Now let me continue learning bizarre topics and finish my
+shell prompt.</p>
+]]></content>
+  </entry>
+  
+</feed>

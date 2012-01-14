@@ -501,6 +501,64 @@ single purpose).</li>
       
   <header>
     
+      <h1 class="entry-title"><a href="/2011/05/09/dependency-tricks-when-compiling-ruby/">Dependency tricks when compiling Ruby</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-09T00:00:00-03:00" pubdate data-updated="true">May 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Just solved a few &#8220;obscure&#8221; problems and I&#8217;m posting them.</p>
+
+<h1>Dependencies</h1>
+
+<p>Optional (but you would <em>really</em> like to install them) dependencies are:</p>
+
+<ul>
+<li>OpenSSL (Debian-based package: libssl-dev)</li>
+<li>readline (Debian-based package: libreadline5-dev [ruby1.8] | libreadline6-dev [ruby1.9]. <em>For Ruby1.8, <em>you must install readline 5</em>, otherwise you&#8217;ll get a damn slow prompt</em>)</li>
+<li>zlib (Debian-based package: zlib1g-dev)</li>
+</ul>
+
+
+<p>Here are a few compeling motives on why you&#8217;d really like to get them:</p>
+
+<ul>
+<li>No SSL means no &#8216;net/https&#8217; and no HTTPs for &#8216;open-uri&#8217;</li>
+<li>No readline means you can&#8217;t hit &#8216;up arrow&#8217; on IRB and get the previous command (no command history)</li>
+<li>No zlib means you can&#8217;t install a gem</li>
+</ul>
+
+
+<p>Long story short, install &#8216;em. And get the right versions.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2011/02/25/rubber-and-whenever-integration/">Rubber and whenever integration</a></h1>
     
     

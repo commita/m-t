@@ -4,7 +4,7 @@ date: 12/04/2010
 author: Kristopher Murata
 layout: post
 comments: true
-categories: 
+categories: rails opensource contrib
 --- 
 
 <a href="/images/contributing-to-rails.jpg"><img src="/images/contributing-to-rails.jpg" alt="Contributing to Rails" style="width:300px; float:left; padding:10px;"/></a>

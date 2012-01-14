@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: debian | Monospaced Thoughts]]></title>
+  <link href="http://monospaced-thoughts.com/categories/debian/atom.xml" rel="self"/>
+  <link href="http://monospaced-thoughts.com/"/>
+  <updated>2012-01-14T02:25:11-02:00</updated>
+  <id>http://monospaced-thoughts.com/</id>
+  <author>
+    <name><![CDATA[Commita Technology]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Compiling Ruby on Debian testing/wheezy with no SSL2]]></title>
+    <link href="http://monospaced-thoughts.com/2011/06/21/compiling-ruby-on-debian-testingwheezy-with-no-ssl2/"/>
+    <updated>2011-06-21T00:00:00-03:00</updated>
+    <id>http://monospaced-thoughts.com/2011/06/21/compiling-ruby-on-debian-testingwheezy-with-no-ssl2</id>
+    <content type="html"><![CDATA[<p><em><strong>Update</strong>: <a href="http://www.ruby-lang.org/en/news/2011/07/15/ruby-1-9-2-p290-is-released">Ruby 1.9.2-p290</a> and <a href="http://www.ruby-lang.org/en/news/2011/07/02/ruby-1-8-7-p352-released/">Ruby 1.8.7-p352</a> fixes the issue in this post.</em></p>
+
+<p>Debian openssl package now ships <a href="http://packages.debian.org/changelogs/pool/main/o/openssl/current/changelog#version1.0.0c-2">without SSL2
+support</a>,
+but it was only in experimental/unstable until 1.0.0d was <a href="http://packages.qa.debian.org/o/openssl/news/20110409T163912Z.html">migrated to
+testing</a>
+that things got messed up for me, since I use testing and Ruby (both 1.8.7 and
+1.9.2) have problems (<a href="http://redmine.ruby-lang.org/issues/4860">1</a> and <a href="http://redmine.ruby-lang.org/issues/4861">2</a>)
+compiling against a nossl2'ed OpenSSL lib.</p>
+
+<p>While these problems are not fixed (the fix is in trunk, but not backported to
+1.8 or 1.9 branches), I fetched the patches from the <a href="http://redmine.ruby-lang.org/issues/4556">actual
+fix</a>, formatted them and compiled the
+rubies with them.</p>
+
+<p>Patches are:</p>
+
+<ul>
+<li><a href="https://gist.github.com/1039377#file_ruby_1.8.7_nossl2.diff">Ruby 1.8.7</a></li>
+<li><a href="https://gist.github.com/1039377#file_ruby_1.9.2_nossl2.diff">Ruby 1.9.2</a></li>
+</ul>
+
+
+<p>And you can compile Ruby either applying them manually over the source tree
+with level 1 (<code>patch -p1 &lt; ruby187.patch</code>) or if you use
+<a href="http://rvm.beginrescueend.com">rvm</a> (which is very likely), you can use custom
+patches when installing rubies. It is explained in rvm's docs at
+<a href="https://rvm.beginrescueend.com/rubies/patching/">https://rvm.beginrescueend.com/rubies/patching/</a>. It is simple as doing:</p>
+
+<p><code>sh
+rvm install 1.8.7 --patch /path/to/ruby187.patch
+</code></p>
+
+<p>Now Ruby happily compiles on my Debian testing :)</p>
+]]></content>
+  </entry>
+  
+</feed>
