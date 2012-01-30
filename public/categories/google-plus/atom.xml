@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: javascript | Monospaced Thoughts]]></title>
-  <link href="http://monospaced-thoughts.com/categories/javascript/atom.xml" rel="self"/>
+  <title><![CDATA[Category: google-plus | Monospaced Thoughts]]></title>
+  <link href="http://monospaced-thoughts.com/categories/google-plus/atom.xml" rel="self"/>
   <link href="http://monospaced-thoughts.com/"/>
   <updated>2012-01-30T01:02:05-02:00</updated>
   <id>http://monospaced-thoughts.com/</id>
@@ -163,54 +163,6 @@ forever unanswered:</p>
 <h3>Will this code compile?</h3>
 
 <p>Good night, and good luck.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[JavaScript Resources]]></title>
-    <link href="http://monospaced-thoughts.com/2011/05/30/javascript-resources/"/>
-    <updated>2011-05-30T00:00:00-03:00</updated>
-    <id>http://monospaced-thoughts.com/2011/05/30/javascript-resources</id>
-    <content type="html"><![CDATA[<p>Quick post. Just a (loosely gathered) compilation of JavaScript resources
-(framework collections, libraries, documentation, etc) that I ran into this
-weekend.</p>
-
-<h2>First Things First</h2>
-
-<p><font color="red">Beware of w3schools</font>. Here's a very good explanation at <a href="http://w3fools.com">w3fools.com</a>.</p>
-
-<h2>The Paperwork</h2>
-
-<ul>
-<li>ECMAScript (ECMA-262) <a href="http://www.ecmascript.org/">language specification</a></li>
-</ul>
-
-
-<h2>JavaScript References</h2>
-
-<ul>
-<li>The excellent Mozilla's MDC (Mozilla Developer Center, or "devmo") <a href="https://developer.mozilla.org/en/JavaScript/Reference">JavaScript Reference</a></li>
-<li>javascriptkit's <a href="http://www.javascriptkit.com/jsref/index.shtml">JavaScript Reference</a></li>
-</ul>
-
-
-<h2>Framework Collections</h2>
-
-<ul>
-<li><a href="http://www.everyjs.com">EveryJS</a> is a community maintened "index of modern
-JavaScript".</li>
-<li><a href="http://microjs.com">MicroJS</a> is also a list of frameworks but targets
-micro-frameworks (frameworks that would fit in 5 kbytes or less and serve a
-single purpose).</li>
-</ul>
-
-
-<h2>Best Practices</h2>
-
-<ul>
-<li><a href="http://javascriptgarden.info">JavaScript Garden</a></li>
-</ul>
-
 ]]></content>
   </entry>
   

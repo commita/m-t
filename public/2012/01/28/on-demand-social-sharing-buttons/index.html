@@ -1,0 +1,546 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>On-demand social sharing buttons - Monospaced Thoughts</title>
+  <meta name="author" content="Commita Technology">
+
+  
+  <meta name="description" content="Today is very common to see social sharing buttons right beside to some content.
+Most common ones are Facebook&#8217;s
+Like, Twitter&#8217;s
+Tweet &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://monospaced-thoughts.com/2012/01/28/on-demand-social-sharing-buttons">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Monospaced Thoughts" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-24228971-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Monospaced Thoughts</a></h1>
+  
+    <h2>creativity in machine calligraphy</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:monospaced-thoughts.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">On-demand social sharing buttons</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-28T17:50:00-02:00" pubdate data-updated="true">Jan 28<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Today is very common to see social sharing buttons right beside to some content.
+Most common ones are Facebook&#8217;s
+<a href="http://developers.facebook.com/docs/reference/plugins/like/">Like</a>, Twitter&#8217;s
+<a href="https://dev.twitter.com/docs/tweet-button">Tweet</a> and Google&#8217;s
+<a href="https://developers.google.com/+/plugins/+1button/">+1</a>. They are virtually
+everywhere, even on their own documentation pages. Product owners and managers
+love them. Common people use them a lot. So they are, in fact, unavoidable. They
+are so omnipresent that some even think they are annoying enough to make
+<a href="https://chrome.google.com/webstore/detail/phfgfpbcplmockgngcmgnalfnploegfi?utm_source=chrome-ntp-icon">browser extensions to block them</a>.
+So, in the end, everyone is writing code because of them.</p>
+
+<p>Of course, I was one of them too.</p>
+
+<p>As a content consumer, I do not hate them. They make my life easier by putting
+me one click away from telling the whole world what I like and why (ok, that&#8217;s
+sarcastic). But they actually do help.</p>
+
+<p>As a developer, <em>I do hate them</em>. They suck. They are some little freaking wild
+embedded pieces of code that you cannot expect to control. Not on edge cases,
+specially those your PO or manager put you into (when they want you to make the
+buttons dance with perfect lip-sync to Lady Gaga&#8217;s latest hit).  I hate them
+when they don&#8217;t have every possible option to customize their style,
+positioning or behavior.  And lastly I hate when you use them in a page with 10
+items that I want the user to be able to share, and they perform
+<a href="http://img692.imageshack.us/img692/3383/screenshot0128201206402.png"><strong>two hundred requests</strong></a>.</p>
+
+<p>Now, no one likes hundreds of requests. Not my mom, you, your ISP or your cheap
+10 buck wireless router (even it not being totally aware of his own existence).</p>
+
+<p>So a really smart thing to do is <em>do not perform hundreds of requests</em>. Right?</p>
+
+<p><strong>Q:</strong> You cutie, but how?<br/>
+<strong>A:</strong> Ok, here is a story that will explain all things: in the
+early 2000&#8217;s, IBM pioneered something called on-demand computing&#8230; no, I&#8217;m just
+kidding. What you do is: <em>don&#8217;t show them bugger buttons. It&#8217;s simple.</em></p>
+
+<p><strong>Q:</strong> But kid wants to share my content with his friends!<br/>
+<strong>A:</strong> You display a handle that will trigger the actual rendering of the
+buttons, <strong>on-demand</strong>.</p>
+
+<p>Attaboy! There is my IT jargon shining on my blog post. <em>Inside a
+<strike>pointless</strike> Questions &amp; <strike>meaningless</strike> Answers
+list</em>. Double score, yes.</p>
+
+<p>Now, you want code, I know. Then take it!</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// I dedicate this</span>
+</span><span class='line'><span class="c1">//   To my family and friends;</span>
+</span><span class='line'><span class="c1">//   To gods, old and new;</span>
+</span><span class='line'><span class="c1">//   To be or not</span>
+</span><span class='line'><span class="c1">//   To be.</span>
+</span><span class='line'><span class="c1">//</span>
+</span><span class='line'><span class="c1">// None of this would be possible without jQuery.</span>
+</span><span class='line'><span class="c1">// Thank you so much.</span>
+</span><span class='line'><span class="c1">//</span>
+</span><span class='line'><span class="c1">// Tears.</span>
+</span><span class='line'><span class="c1">//</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// When kid mouseover&#39;s your handle</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.share-buttons-handle&quot;</span><span class="p">).</span><span class="nx">hover</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// Everyone needs an identity in this world</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">handle_id</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+</span><span class='line'>    <span class="c1">// Since you want to show buttons for this, and only this,</span>
+</span><span class='line'>    <span class="c1">// one unique content, you should have a way to identify each</span>
+</span><span class='line'>    <span class="c1">// piece, like an id for a blog post, which you will fetch</span>
+</span><span class='line'>    <span class="c1">// right</span>
+</span><span class='line'>    <span class="c1">// now!</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">content_id</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">&#39;contentId&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="c1">// Note that you must put a data-content-id attribute to the</span>
+</span><span class='line'>    <span class="c1">// placeholder elements for this to work. Like this:</span>
+</span><span class='line'>    <span class="c1">// &lt;a href=&quot;#&quot; data-content-id=&quot;1&quot; class=&quot;share-buttons-handle listen-to-your-heart&quot;&gt;Get hover here now!&lt;/a&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// With the content id, you can fetch the actual HTML for the</span>
+</span><span class='line'>    <span class="c1">// buttons on demand, via AJAX, from your own server and</span>
+</span><span class='line'>    <span class="c1">// put inside the placeholder that was there hiding,</span>
+</span><span class='line'>    <span class="c1">// plotting, scheming, waiting, lurking</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#hiding-plotting-scheming-waiting-lurking-placeholder-for-&quot;</span> <span class="o">+</span> <span class="nx">content_id</span><span class="p">).</span><span class="nx">load</span><span class="p">(</span><span class="s2">&quot;/path/to/your/thing/that/will/return/a/html/snippet/with/buttons/iframes/xfbml/whatever.your-I-cant-route-without-extensions-framework-file-extension&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="c1">// Here we have the HTML snippet loaded and injected into the placeholder</span>
+</span><span class='line'>      <span class="c1">// Now we can tell the freaking share APIs to parse and render buttons.</span>
+</span><span class='line'>      <span class="c1">// But as I am a very nice developer, I&#39;ll only show the box when the APIs</span>
+</span><span class='line'>      <span class="c1">// are actually done rendering, so I&#39;ll use custom events to signal this</span>
+</span><span class='line'>      <span class="c1">// to the handle that was hover()&#39;ed.</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// For Facebook, you can use:</span>
+</span><span class='line'>      <span class="nx">FB</span><span class="p">.</span><span class="nx">XFBML</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// parse() will call this function when ready</span>
+</span><span class='line'>        <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#&quot;</span> <span class="o">+</span> <span class="nx">handle_id</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s2">&quot;api-ready&quot;</span><span class="p">,</span> <span class="s2">&quot;facebook&quot;</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// For Twitter, you can&#39;t actually tell the Javascript API to render when</span>
+</span><span class='line'>      <span class="c1">// you want to. So you need your AJAX call to return an Tweet button iframe.</span>
+</span><span class='line'>      <span class="c1">// I know, that is what it is. Luckily, jQuery&#39;s load() works for checking</span>
+</span><span class='line'>      <span class="c1">// when iframes are ready:</span>
+</span><span class='line'>      <span class="c1">// (you can use a class for this iframe for the sake of identity, but</span>
+</span><span class='line'>      <span class="c1">// the below will work too)</span>
+</span><span class='line'>      <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;iframe[src*=&#39;tweet_button&#39;]&quot;</span><span class="p">).</span><span class="nx">load</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#&quot;</span> <span class="o">+</span> <span class="nx">handle_id</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s2">&quot;api-ready&quot;</span><span class="p">,</span> <span class="s2">&quot;twitter&quot;</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// Lastly, you make Google render your freaking +1 button, for free:</span>
+</span><span class='line'>      <span class="nx">gapi</span><span class="p">.</span><span class="nx">plusone</span><span class="p">.</span><span class="nx">go</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>      <span class="c1">// Since it was free, you cannot hope to have a callback function to tell</span>
+</span><span class='line'>      <span class="c1">// you little spoiled child when it is ready, CAN YOU? Yes, I thought so.</span>
+</span><span class='line'>      <span class="c1">// But, I&#39;m a spoiled child, I&#39;ll tell it&#39;s ready when I tell it&#39;s ready.</span>
+</span><span class='line'>      <span class="c1">// Google +1 API is like: whatever floats your boat, bro.</span>
+</span><span class='line'>      <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#&quot;</span> <span class="o">+</span> <span class="nx">handle_id</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s2">&quot;api-ready&quot;</span><span class="p">,</span> <span class="s2">&quot;plusone&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>  <span class="p">},</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// When kid mouseleave&#39;s your handle, hide them buggers!</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">content_id</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">&#39;contentId&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#hiding-plotting-scheming-waiting-lurking-placeholder-for-&quot;</span> <span class="o">+</span> <span class="nx">content_id</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// Now we want or prayers to be heard</span>
+</span><span class='line'>  <span class="c1">// The class used below should be on every hover()&#39;ed handle</span>
+</span><span class='line'>  <span class="c1">// so they can actually Listen To Your Heart.</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.listen-to-your-heart&quot;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;api-ready&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ev</span><span class="p">,</span> <span class="nx">api</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">content_id</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">&#39;contentId&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="c1">// Now we want to show only if all APIs are finished</span>
+</span><span class='line'>    <span class="c1">// so we do exactly none of it and show it anyway</span>
+</span><span class='line'>    <span class="c1">// because I&#39;m lazy to write this part and you should do it your way</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// if (allAPIsAreFinishedFor(content_id))</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#hiding-plotting-scheming-waiting-lurking-placeholder-for-&quot;</span> <span class="o">+</span> <span class="nx">content_id</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So, after all that shitstorm of non optimized code entangled by all that
+commenting, you and me will agree, there&#8217;s one question that will be left
+forever unanswered:</p>
+
+<h3>Will this code compile?</h3>
+
+<p>Good night, and good luck.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Kiyoshi '13k' Murata</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-28T17:50:00-02:00" pubdate data-updated="true">Jan 28<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/facebook/'>facebook</a>, <a class='category' href='/categories/google-plus/'>google-plus</a>, <a class='category' href='/categories/javascript/'>javascript</a>, <a class='category' href='/categories/twitter/'>twitter</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://monospaced-thoughts.com/2012/01/28/on-demand-social-sharing-buttons/" data-via="" data-counturl="http://monospaced-thoughts.com/2012/01/28/on-demand-social-sharing-buttons/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2012/01/12/monospaced-rebasing/" title="Previous Post: Rebasing Mono-T">&laquo; Rebasing Mono-T</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/01/28/on-demand-social-sharing-buttons/">On-demand social sharing buttons</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/01/12/monospaced-rebasing/">Rebasing Mono-T</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/08/04/encoding-utilities/">Encoding utilities</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/07/05/bash-regexp-trick/">Bash regexp trick</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/06/21/compiling-ruby-on-debian-testingwheezy-with-no-ssl2/">Compiling Ruby on Debian testing/wheezy with no SSL2</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Github Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/commita">@commita</a> on Github
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'commita',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+  <h1>Latest Tweets</h1>
+  
+    <ul id="tweets-krsmurata" class="tweets">
+      <li class="loading">Status updating...</li>
+    </ul>
+    
+      <a href="http://twitter.com/krsmurata" class="twitter-follow-button" data-show-count="false">Follow @krsmurata</a>
+    
+    <script type="text/javascript">
+      $.domReady(function(){
+        getTwitterFeed("krsmurata", 3, false);
+      });
+    </script>
+  
+    <ul id="tweets-13k_" class="tweets">
+      <li class="loading">Status updating...</li>
+    </ul>
+    
+      <a href="http://twitter.com/13k_" class="twitter-follow-button" data-show-count="false">Follow @13k_</a>
+    
+    <script type="text/javascript">
+      $.domReady(function(){
+        getTwitterFeed("13k_", 3, false);
+      });
+    </script>
+  
+  <script src="/javascripts/twitter.js" type="text/javascript"></script>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Commita Technology -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'm-t';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://monospaced-thoughts.com/2012/01/28/on-demand-social-sharing-buttons/';
+        var disqus_url = 'http://monospaced-thoughts.com/2012/01/28/on-demand-social-sharing-buttons/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
