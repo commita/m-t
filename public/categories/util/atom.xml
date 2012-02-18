@@ -4,7 +4,7 @@
   <title><![CDATA[Category: util | Monospaced Thoughts]]></title>
   <link href="http://monospaced-thoughts.com/categories/util/atom.xml" rel="self"/>
   <link href="http://monospaced-thoughts.com/"/>
-  <updated>2012-01-30T01:02:05-02:00</updated>
+  <updated>2012-02-18T19:46:16-03:00</updated>
   <id>http://monospaced-thoughts.com/</id>
   <author>
     <name><![CDATA[Commita Technology]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Encoding utilities]]></title>
     <link href="http://monospaced-thoughts.com/2011/08/04/encoding-utilities/"/>
-    <updated>2011-08-04T00:00:00-03:00</updated>
+    <updated>2011-08-04T00:00:00-04:00</updated>
     <id>http://monospaced-thoughts.com/2011/08/04/encoding-utilities</id>
     <content type="html"><![CDATA[<p>Very short post, just a tip on encoding/charset utilities to use with files.</p>
 

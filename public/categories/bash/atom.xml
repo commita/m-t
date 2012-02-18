@@ -4,7 +4,7 @@
   <title><![CDATA[Category: bash | Monospaced Thoughts]]></title>
   <link href="http://monospaced-thoughts.com/categories/bash/atom.xml" rel="self"/>
   <link href="http://monospaced-thoughts.com/"/>
-  <updated>2012-01-30T01:02:05-02:00</updated>
+  <updated>2012-02-18T19:46:16-03:00</updated>
   <id>http://monospaced-thoughts.com/</id>
   <author>
     <name><![CDATA[Commita Technology]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Bash regexp trick]]></title>
     <link href="http://monospaced-thoughts.com/2011/07/05/bash-regexp-trick/"/>
-    <updated>2011-07-05T00:00:00-03:00</updated>
+    <updated>2011-07-05T00:00:00-04:00</updated>
     <id>http://monospaced-thoughts.com/2011/07/05/bash-regexp-trick</id>
     <content type="html"><![CDATA[<p>Yesterday I was playing with my bash prompt and for a long-explanation reason,
 I ended up needing to strip non-printing sequences from a string (the actual
