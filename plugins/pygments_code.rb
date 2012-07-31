@@ -5,6 +5,10 @@ require 'pygments'
 require 'fileutils'
 require 'digest/md5'
 
+if ENV['HEROKU_BUILDPACK']
+  Pygments.start nil, :python_exe => '/usr/bin/python2.6'
+end
+
 PYGMENTS_CACHE_DIR = File.expand_path('../../.pygments-cache', __FILE__)
 FileUtils.mkdir_p(PYGMENTS_CACHE_DIR)
 
