@@ -2,12 +2,12 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://yoursite.com
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+url: http://monospaced-thoughts.com
+title: Monospaced Thoughts
+subtitle: creativity in machine calligraphy
+author: Commita Technology
 simple_search: http://google.com/search
-description:
+description: "Monospaced Thoughts has two authors: Kristopher and Kiyoshi, brothers and partners in tech ventures. Co-Founders of Commita, a software company by definition."
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -33,12 +33,12 @@ source: source
 destination: public
 plugins: plugins
 code_dir: downloads/code
-category_dir: blog/categories
+category_dir: categories
 markdown: rdiscount
 pygments: false # Jekyll's default Python Pygments have been replaced by pygments.rb. Set to true to use Albino + Pythong Pygments
 
 paginate: 10          # Posts per page on the blog index
-pagination_dir: blog  # Directory base for pagination URLs eg. /blog/page/2/
+pagination_dir:       # Directory base for pagination URLs eg. /blog/page/2/
 recent_posts: 5       # Posts in the sidebar Recent Posts section
 excerpt_link: "Read on &rarr;"  # "Continue reading" link text at the bottom of excerpted articles
 excerpt_in_feed: false # Truncate excerpted articles in the atom feed
@@ -49,11 +49,11 @@ linklog_marker_position: after
 linklog_marker_position_feed: after
 standard_post_marker:
 
-titlecase: true       # Converts page and post titles to titlecase
+titlecase: false      # Converts page and post titles to titlecase
 
 # To change the layout's default sidebar Add a new sidebar source/_includes/sidebars/your_sidebar.html
 # then make changes below, eg. post_sidebar: your_sidebar.html
-blog_index_sidebar: blog_index_default.html
+blog_index_sidebar: mt_index.html
 page_sidebar: page_default.html
 post_sidebar: post_default.html
 
@@ -66,18 +66,24 @@ post_sidebar: post_default.html
 respectfully_social: true
 
 # Github repositories
-github_user:
+github_user: commita
 github_repo_count: 0
 github_show_profile_link: true
 github_skip_forks: true
 
 # Twitter
-twitter_user:
-twitter_tweet_count: 4
-twitter_show_replies: false
-twitter_follow_button: true
-twitter_show_follower_count: false
 twitter_tweet_button: true
+twitter_users:
+  - username: krsmurata
+    tweet_count: 3
+    show_replies: false
+    follow_button: true
+    show_follower_count: false
+  - username: 13k_
+    tweet_count: 3
+    show_replies: false
+    follow_button: true
+    show_follower_count: false
 
 # Google +1
 google_plus_one: false
@@ -86,7 +92,7 @@ google_plus_one_size: medium
 # Google Plus Profile
 # Hidden: No visible button, just add author information to search results
 google_plus_user:
-google_plus_hidden: false
+google_plus_hidden: true
 google_plus_image_size: 32
 
 # Pinboard
@@ -98,12 +104,12 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
+disqus_short_name: m-t
 disqus_show_comment_count: false
 disqus_developer: 0
 
 # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id: UA-24228971-2
 
 # Facebook Like
-facebook_like: false
+facebook_like: true

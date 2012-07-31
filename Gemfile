@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-group :development do
+group :development, :heroku do
   gem 'rake', '~> 0.9.2'
   gem 'rack', '~> 1.4.1'
   gem 'jekyll', '~> 0.11.2'

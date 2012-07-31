@@ -1,0 +1,16 @@
+{% if site.twitter_users %}
+<section id="sidebar-twitter">
+  <h1>Latest Tweets</h1>
+  {% for user in site.twitter_users %}
+    <h3>From {{user.username}}</h3>
+    <ul id="tweets-{{user.username}}" class="tweets" data-user="{{user.username}}" data-count="{{user.tweet_count}}" data-replies="{{user.show_replies}}">
+      <li class="loading">Status updating...</li>
+    </ul>
+    {% if user.follow_button %}
+      <a href="//twitter.com/{{ user.username }}" class="twitter-follow-button" data-show-count="{{ user.show_follower_count }}">Follow @{{ user.username }}</a>
+    {% else %}
+      <p>Follow <a href="//twitter.com/{{user.username}}">@{{ user.username }}</a></p>
+    {% endif %}
+  {% endfor %}
+</section>
+{% endif %}
