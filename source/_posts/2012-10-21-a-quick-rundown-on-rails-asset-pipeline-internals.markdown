@@ -39,8 +39,7 @@ Sprockets integration with Rails 4.x is extracted to the
 * The compiler iterates over every single path inside the load paths,
   recursively, and tests each entry against the rules defined in
   `config.assets.precompile`, if any returns positively, it then compiles the
-  asset and writes to the target directory ([all that is
-  here][sprockets_compiler])
+  asset and writes to the target directory ([all that is here][sprockets_compiler])
 
 [assets_paths]: https://github.com/rails/rails/blob/v3.2.8/railties/lib/rails/engine.rb#L574-578
 [assets_precompile]: https://github.com/rails/rails/blob/v3.2.8/railties/lib/rails/application/configuration.rb#L48
@@ -48,6 +47,6 @@ Sprockets integration with Rails 4.x is extracted to the
 [sprockets_bootstrap]: https://github.com/rails/rails/blob/v3.2.8/actionpack/lib/sprockets/railtie.rb#L58-60
 [sprockets_append_paths]: https://github.com/rails/rails/blob/v3.2.8/actionpack/lib/sprockets/bootstrap.rb#L12
 [assets_task]: https://github.com/rails/rails/blob/v3.2.8/actionpack/lib/sprockets/assets.rake#L50-56
-[sprockets_compiler]: https://github.com/rails/rails/blob/v3.2.8/actionpack/lib/sprockets/static_compiler.rb#L22
+[sprockets_compiler]: https://github.com/rails/rails/blob/v3.2.8/actionpack/lib/sprockets/static_compiler.rb
 
 [sprockets-rails]: https://github.com/rails/sprockets-rails
