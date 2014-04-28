@@ -7,7 +7,7 @@ group :development, :heroku do
   gem 'rack', '~> 1.4.1'
   gem 'jekyll', '~> 0.11.2'
   gem 'rdiscount', '~> 1.6.8'
-  gem 'pygments.rb', git: 'git://github.com/akzhan/pygments.rb.git', ref: 'rubypython-0.6'
+  gem 'pygments.rb', '~> 0.5.4'
   gem 'RedCloth', '~> 4.2.9'
   gem 'haml', '~> 3.1.6'
   gem 'compass', '~> 0.12.1'
