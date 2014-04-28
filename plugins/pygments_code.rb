@@ -5,10 +5,6 @@ require 'pygments'
 require 'fileutils'
 require 'digest/md5'
 
-if ENV['HEROKU_BUILDPACK']
-  Pygments.start nil, :python_exe => '/usr/bin/python2.6'
-end
-
 PYGMENTS_CACHE_DIR = File.expand_path('../../.pygments-cache', __FILE__)
 FileUtils.mkdir_p(PYGMENTS_CACHE_DIR)
 
@@ -23,12 +19,12 @@ module HighlightCode
       if get_config('pygments')
         highlighted_code = Albino.new(code, lang, :html)
       else
-        highlighted_code = Pygments.highlight(code, :lexer => lang, :formatter => 'html', :options => {:encoding => 'utf-8'}) 
+        highlighted_code = Pygments.highlight(code, lexer: lang, formatter: 'html', options: {encoding: 'utf-8'})
       end
       File.open(path, 'w') {|f| f.print(highlighted_code) } if path
     end
     highlighted_code.to_s
-  rescue 
+  rescue
     puts $!,$@
   end
 
