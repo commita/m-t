@@ -1,5 +1,7 @@
 source "http://rubygems.org"
 
+ruby "2.1.1"
+
 group :development, :heroku do
   gem 'rake', '~> 0.9.2'
   gem 'rack', '~> 1.4.1'
