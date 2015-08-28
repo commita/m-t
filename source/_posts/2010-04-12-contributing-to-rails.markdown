@@ -7,7 +7,7 @@ comments: true
 categories: rails opensource contrib
 --- 
 
-{% img left https://dl.dropbox.com/sh/3tephljxyef8fne/qWv90XlOZI/images/contributing-to-rails.jpg 300 '' Contributing to Rails %}
+{% img left https://www.dropbox.com/s/9dr5v9z0tkznw35/contributing-to-rails.jpg?dl=1 300 '' Contributing to Rails %}
 
 I had a draft of this article on a paper since my first contribution to Rails Core was accepted 
 approximately a week ago and I was postponing to write it because 1) I didn't have enough experience, 
